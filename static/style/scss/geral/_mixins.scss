@@ -72,27 +72,74 @@ $spacing-1-2: px-rem(70px);
 $spacing-2-2: px-rem(40px);
 $spacing-3-2: px-rem(20px);
 
+// margin bottom
 @mixin mbottom-1 {
   margin-bottom: $spacing-1;
-  @include screen(notebook-s) {
-    margin-bottom: $spacing-1-2;
-  }
 }
 
 @mixin mbottom-2 {
   margin-bottom: $spacing-2;
-  @include screen(notebook-s) {
-    margin-bottom: $spacing-2-2;
-  }
 }
 
 @mixin mbottom-3 {
   margin-bottom: $spacing-3;
-  @include screen(notebook-s) {
-    margin-bottom: $spacing-3-2;
-  }
 }
 
 @mixin mbottom-4 {
   margin-bottom: $spacing-4;
+}
+
+// margin-top
+@mixin mtop-1 {
+  margin-top: $spacing-1;
+}
+
+@mixin mtop-2 {
+  margin-top: $spacing-2;
+}
+
+@mixin mtop-2-2 {
+  margin-top: $spacing-2-2;
+}
+
+@mixin mtop-3 {
+  margin-top: $spacing-3;
+}
+
+@mixin mtop-4 {
+  margin-top: $spacing-4;
+}
+
+// padding bottom
+@mixin pbottom-1 {
+  padding-bottom: $spacing-1;
+}
+
+@mixin pbottom-2 {
+  padding-bottom: $spacing-2;
+}
+
+@mixin pbottom-3 {
+  padding-bottom: $spacing-3;
+}
+
+@mixin pbottom-4 {
+  padding-bottom: $spacing-4;
+}
+
+// padding-top
+@mixin ptop-1 {
+  padding-top: $spacing-1;
+}
+
+@mixin ptop-2 {
+  padding-top: $spacing-2;
+}
+
+@mixin ptop-3 {
+  padding-top: $spacing-3;
+}
+
+@mixin ptop-4 {
+  padding-top: $spacing-4;
 }

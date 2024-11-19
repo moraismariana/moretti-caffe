@@ -14,6 +14,11 @@
   a {
     @include header-text;
   }
+  img[alt="Moretti Caffè"] {
+    @include screen(tablet) {
+      max-width: 200px;
+    }
+  }
 }
 
 .header2 {
@@ -27,5 +32,11 @@
     display: block;
     max-width: fit-content;
     @include align-div;
+  }
+
+  img[alt="Moretti Caffè"] {
+    @include screen(tablet) {
+      max-width: 200px;
+    }
   }
 }
