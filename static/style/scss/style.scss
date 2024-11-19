@@ -1,0 +1,26 @@
+// Reset / definições iniciais
+@import "./geral/colors";
+@import "./geral/functions";
+@import "./geral/mixins";
+@import "./geral/global";
+@import "./geral/typo";
+
+@import "./geral/header";
+@import "./geral/footer";
+
+// Seções
+// Página inicial
+@import "./inicio/introducao";
+@import "./inicio/cardapio";
+@import "./inicio/historia";
+@import "./inicio/pedido";
+@import "./inicio/localizacao";
+
+// Sobre
+@import "./sobre/introducao";
+@import "./sobre/informacoes";
+
+// Cardapio
+@import "./cardapio/introducao";
+@import "./cardapio/categorias";
+@import "./cardapio/categoria";

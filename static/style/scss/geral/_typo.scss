@@ -1,0 +1,79 @@
+@mixin title-1 {
+  font-family: "Afacad";
+  font-size: px-rem(70px);
+  line-height: 0.8em;
+  font-weight: 400;
+  text-transform: uppercase;
+  @include screen(notebook-s) {
+    font-size: px-rem(40px);
+    line-height: 1em;
+  }
+}
+
+@mixin title-2 {
+  font-family: "Afacad";
+  font-size: px-rem(60px);
+  line-height: 0.8em;
+  font-weight: 400;
+  text-transform: uppercase;
+  @include screen(notebook-s) {
+    font-size: px-rem(40px);
+    line-height: 1em;
+  }
+}
+
+@mixin title-3 {
+  font-family: "Afacad";
+  font-size: px-rem(40px);
+  line-height: 1em;
+  font-weight: 400;
+  text-transform: uppercase;
+  @include screen(notebook-s) {
+    font-size: px-rem(40px);
+  }
+}
+
+@mixin title-4 {
+  font-family: "Afacad";
+  font-size: px-rem(30px);
+  line-height: 1em;
+  font-weight: 400;
+  text-transform: uppercase;
+  @include screen(notebook-s) {
+    font-size: px-rem(30px);
+  }
+}
+
+@mixin header-text {
+  text-transform: uppercase;
+  font-family: "Afacad";
+  font-size: px-rem(18px);
+  font-weight: 400;
+}
+
+@mixin subtitle-text {
+  font-family: "Dancing Script";
+  font-size: px-rem(30px);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+@mixin link-text {
+  display: block;
+  max-width: fit-content;
+  text-transform: uppercase;
+  font-family: "Afacad";
+  font-size: px-rem(18px);
+  font-weight: 400;
+  border: 1px solid $w;
+  padding: 0.5em 1em;
+}
+
+@mixin text-1 {
+  font-family: "Afacad";
+  font-size: px-rem(20px);
+  font-weight: 400;
+  @include screen(notebook-s) {
+    font-size: px-rem(20px);
+  }
+}

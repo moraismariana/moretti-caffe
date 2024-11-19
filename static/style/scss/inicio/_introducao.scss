@@ -1,0 +1,35 @@
+.inicio-introducao {
+  @include mbottom-1;
+  margin-bottom: $spacing-1 * 2;
+  height: calc(100svh - 91px);
+  .inicio-introducao-bg {
+    border-radius: 40vh 0 40vh 0;
+    // 20vw ou 40vh
+    height: 100%;
+    background-image: url("../../img/inicio/introducao.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .inicio-introducao-text {
+    text-align: center;
+    position: relative;
+    top: 45%;
+    transform: translateY(-50%);
+  }
+  h1 {
+    @include title-1;
+  }
+  p {
+    @include subtitle-text;
+  }
+  &::after {
+    content: "";
+    height: 2px;
+    width: 90%;
+    position: absolute;
+    bottom: -$spacing-1;
+    left: 5%;
+    background-color: $c3;
+  }
+}

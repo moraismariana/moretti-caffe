@@ -1,0 +1,23 @@
+.inicio-localizacao {
+  @include mbottom-1;
+  background-image: url("../../img/inicio/mapa.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-top: $spacing-1 * 1.5;
+  padding-bottom: $spacing-1 * 1.5;
+  h2 {
+    @include title-3;
+    @include mbottom-3;
+    text-align: center;
+  }
+  p {
+    @include text-1;
+    @include mbottom-3;
+    text-align: center;
+  }
+  a {
+    @include link-text;
+    @include align-div;
+  }
+}

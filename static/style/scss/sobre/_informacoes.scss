@@ -1,0 +1,33 @@
+.sobre-info {
+  @include mbottom-1;
+  margin-top: $spacing-1;
+  p {
+    @include container;
+    @include text-1;
+    color: $c5;
+    text-align: center;
+    &:nth-of-type(1) {
+      @include mbottom-2;
+    }
+  }
+}
+
+.sobre-fundador {
+  @include mbottom-1;
+  img {
+    @include align-div;
+    max-height: 600px;
+    max-width: 100%;
+    border-radius: 22vh 0 22vh 0;
+    @include mbottom-1;
+  }
+  p {
+    @include container;
+    @include text-1;
+    text-align: center;
+    &:nth-of-type(1) {
+      color: $c5;
+      @include mbottom-2;
+    }
+  }
+}
