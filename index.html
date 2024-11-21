@@ -17,8 +17,11 @@
 
 <body>
     <header class="header">
+        <script>
+            window.LOGO_URL = './static/img/svg/';
+        </script>
         <ul>
-            <li><a href="./"><img src="./static/img/svg/Logo.svg" alt="Moretti Caffè"></a></li>
+            <li><a href="./"><img data-logo-menu src="./static/img/svg/Logo.svg" alt="Moretti Caffè"></a></li>
             <div>
                 <li><a href="./">Início</a></li>
                 <li><a href="./sobre/">Sobre o Moretti</a></li>
@@ -27,7 +30,7 @@
                 <li><a href="./cardapio/">Cardápio</a></li>
                 <li><a href="./">Faça um pedido</a></li>
             </div>
-            <button>
+            <button data-menu-mobile-botao>
                 <div></div>
             </button>
         </ul>
@@ -72,7 +75,7 @@
         <p>Desenvolvido por Mariana Morais © 2024.</p>
     </footer>
 
-    <script type="module" src="./js/script.js"></script>
+    <script type="module" src="./static/js/script.js"></script>
 </body>
 
 </html>

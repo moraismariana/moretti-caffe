@@ -8,19 +8,22 @@
     z-index: 2;
   }
   ul {
+    padding-top: 5px;
+    padding-bottom: 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     div:not(button div) {
       display: flex;
       gap: 40px;
+      @include screen(notebook-s) {
+        gap: 20px;
+      }
       @include screen(tablet) {
         display: none;
       }
     }
     a {
-      padding-top: 5px;
-      padding-bottom: 5px;
       @include header-text;
     }
     & > li {
@@ -63,7 +66,7 @@
   }
 
   img[alt="Moretti Caffè"] {
-    @include screen(tablet) {
+    @include screen(notebook-s) {
       max-width: 200px;
     }
   }
@@ -98,7 +101,7 @@
 }
 
 .inicio-introducao.active {
-  padding-top: 86px;
+  padding-top: 96px;
 }
 
 .header2 {
@@ -115,9 +118,13 @@
   }
 
   img[alt="Moretti Caffè"] {
-    @include screen(tablet) {
+    @include screen(notebook-s) {
       max-width: 200px;
     }
+  }
+  @include screen(notebook-s) {
+    padding-top: $spacing-3 + px-rem(5px);
+    padding-bottom: $spacing-3 + px-rem(5px);
   }
 }
 
