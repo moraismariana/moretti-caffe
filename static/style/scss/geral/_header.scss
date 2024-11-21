@@ -2,23 +2,103 @@
   @include container;
   padding-top: $spacing-3;
   padding-bottom: $spacing-3;
+  position: relative;
+  &.active {
+    position: fixed;
+    z-index: 2;
+  }
   ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    div {
+    div:not(button div) {
       display: flex;
       gap: 40px;
+      @include screen(tablet) {
+        display: none;
+      }
+    }
+    a {
+      padding-top: 5px;
+      padding-bottom: 5px;
+      @include header-text;
+    }
+    & > li {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      &.active {
+        position: fixed;
+        display: block;
+        left: 50%;
+        transform: translateX(-50%);
+      }
     }
   }
-  a {
-    @include header-text;
+  button {
+    display: none;
+    top: 0;
+    z-index: 2;
+    height: 30px;
+    width: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    @include screen(tablet) {
+      display: block;
+      top: $spacing-3 - px-rem(2px);
+    }
+    &.active {
+      position: fixed;
+    }
   }
+  button div {
+    content: "";
+    display: block;
+    height: 2px;
+    width: 20px;
+    background: #fff;
+    box-shadow: 0 7px #fff, 0 -7px #fff;
+  }
+
   img[alt="Moretti Caffè"] {
     @include screen(tablet) {
       max-width: 200px;
     }
   }
+}
+
+.menu-mobile {
+  display: none;
+  position: fixed;
+  background-color: $c1;
+  width: 100%;
+  top: 0;
+  height: 100vh;
+  z-index: 1;
+  ul {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  a {
+    display: block;
+    text-align: center;
+    @include header-text;
+    padding: 10px;
+  }
+  &.active {
+    display: block;
+    animation: to-right 0.5s forwards;
+  }
+  &.closing {
+    animation: to-left 0.5s forwards;
+  }
+}
+
+.inicio-introducao.active {
+  padding-top: 86px;
 }
 
 .header2 {
@@ -38,5 +118,23 @@
     @include screen(tablet) {
       max-width: 200px;
     }
+  }
+}
+
+@keyframes to-right {
+  from {
+    transform: translate3d(-1000px, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes to-left {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-1000px, 0, 0);
   }
 }

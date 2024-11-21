@@ -16,7 +16,9 @@
   @include mbottom-1;
   img {
     @include align-div;
-    max-height: 600px;
+    object-fit: cover;
+    max-height: 500px;
+    min-width: 1200px;
     max-width: 100%;
     border-radius: 22vh 0 22vh 0;
     @include mbottom-1;
