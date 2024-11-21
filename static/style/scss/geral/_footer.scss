@@ -8,9 +8,6 @@
     font-weight: 400;
     color: $c4;
     text-align: center;
-    @include screen(notebook-s) {
-      font-size: px-rem(20px);
-    }
   }
   &::before {
     content: "";

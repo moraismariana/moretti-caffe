@@ -20,4 +20,8 @@
     @include link-text;
     @include align-div;
   }
+  @include screen(notebook-s) {
+    padding-top: $spacing-1 * 1.3;
+    padding-bottom: $spacing-1 * 1.3;
+  }
 }

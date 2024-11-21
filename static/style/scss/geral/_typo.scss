@@ -1,19 +1,24 @@
 @mixin title-1 {
   font-family: "Afacad";
   font-size: px-rem(70px);
-  line-height: 0.8em;
+  line-height: 1em;
   font-weight: 400;
   text-transform: uppercase;
+  @include screen(notebook-m) {
+    font-size: px-rem(64px);
+  }
   @include screen(notebook-s) {
+    font-size: px-rem(50px);
+  }
+  @include screen(mobile) {
     font-size: px-rem(40px);
-    line-height: 1em;
   }
 }
 
 @mixin title-2 {
   font-family: "Afacad";
   font-size: px-rem(60px);
-  line-height: 0.8em;
+  line-height: 1em;
   font-weight: 400;
   text-transform: uppercase;
   @include screen(notebook-s) {
@@ -29,7 +34,10 @@
   font-weight: 400;
   text-transform: uppercase;
   @include screen(notebook-s) {
-    font-size: px-rem(40px);
+    font-size: px-rem(36px);
+  }
+  @include screen(mobile) {
+    font-size: px-rem(30px);
   }
 }
 
@@ -56,6 +64,12 @@
   font-size: px-rem(30px);
   font-weight: 500;
   letter-spacing: 0.05em;
+  @include screen(notebook-s) {
+    font-size: px-rem(24px);
+  }
+  @include screen(mobile) {
+    font-size: px-rem(22px);
+  }
 }
 
 @mixin link-text {
