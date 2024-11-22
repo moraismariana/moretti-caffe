@@ -17,11 +17,14 @@
   img {
     @include align-div;
     object-fit: cover;
-    max-height: 500px;
-    min-width: 1200px;
+    height: 500px;
+    width: 1200px;
     max-width: 100%;
     border-radius: 22vh 0 22vh 0;
     @include mbottom-1;
+    @include screen(mobile) {
+      height: 460px;
+    }
   }
   p {
     @include container;

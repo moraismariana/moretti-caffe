@@ -7,7 +7,7 @@ export default function initMenuMobile() {
       const logo = document.querySelector("ul > li");
       const menuMobile = document.querySelector(".menu-mobile");
       const header = document.querySelector(".header");
-      const inicioIntroducao = document.querySelector(".inicio-introducao");
+      const proximoElemento = header.nextElementSibling.nextElementSibling;
 
       // Bloqueia cliques enquanto a animação está em andamento
       if (isAnimating) return;
@@ -48,7 +48,7 @@ export default function initMenuMobile() {
       // Alterna as outras classes
       logo.classList.toggle("active");
       header.classList.toggle("active");
-      inicioIntroducao.classList.toggle("active");
+      proximoElemento.classList.toggle("active");
     });
   }
 }
