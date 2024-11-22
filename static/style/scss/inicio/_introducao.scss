@@ -16,6 +16,9 @@
     position: relative;
     top: 45%;
     transform: translateY(-50%);
+    @include screen(tablet) {
+      top: calc(50svh - 96px);
+    }
   }
   h1 {
     @include title-1;

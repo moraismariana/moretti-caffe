@@ -1,16 +1,19 @@
 .cardapio-introducao {
-  height: calc(100vh - 91px);
+  height: calc(100svh - 91px);
   .cardapio-introducao-bg {
     position: relative;
     top: 46%;
     transform: translateY(-50%);
-    padding-top: $spacing-1 * 3;
-    padding-bottom: $spacing-1 * 3;
+    padding-top: 22vh;
+    padding-bottom: 22vh;
     background-image: url("../../img/cardapio/introducao.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     text-align: center;
+    @include screen(tablet) {
+      top: calc(50svh - 96px);
+    }
   }
   h1 {
     @include title-2;

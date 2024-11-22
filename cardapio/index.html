@@ -16,18 +16,34 @@
 </head>
 
 <body>
-    <header class="header2">
+    <header class="header">
         <script>
             window.LOGO_URL = '../static/img/svg/';
         </script>
-        <a href="../">
-            <img src="../static/img/svg/left-arrow.svg" alt="Seta para o lado">
-        </a>
-        <a href="../">
-            <img data-logo-menu src="../static/img/svg/Logo.svg" alt="Moretti Caffè">
-        </a>
+        <ul>
+            <li><a href="./"><img data-logo-menu src="../static/img/svg/Logo.svg" alt="Moretti Caffè"></a></li>
+            <div>
+                <li><a href="../">Início</a></li>
+                <li><a href="../sobre/">Sobre o Moretti</a></li>
+            </div>
+            <div>
+                <li><a href="../cardapio/">Cardápio</a></li>
+                <li><a href="../">Faça um pedido</a></li>
+            </div>
+            <button data-menu-mobile-botao>
+                <div></div>
+            </button>
+        </ul>
     </header>
-    <article class="cardapio-introducao">
+    <div class="menu-mobile">
+        <ul>
+            <li><a href="../">Início</a></li>
+            <li><a href="../sobre/">Sobre o Moretti</a></li>
+            <li><a href="../cardapio/">Cardápio</a></li>
+            <li><a href="../">Faça um pedido</a></li>
+        </ul>
+    </div>
+    <article class="cardapio-introducao proximo-elemento">
         <div class="cardapio-introducao-bg">
             <h1>Cardápio</h1>
             <p>O melhor da culinária italiana.</p>

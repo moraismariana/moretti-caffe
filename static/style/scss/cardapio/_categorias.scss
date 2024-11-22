@@ -10,6 +10,10 @@
         padding-bottom: $spacing-2-2;
         text-align: center;
         display: block;
+        @include screen(mobile) {
+          padding-top: $spacing-3;
+          padding-bottom: $spacing-3;
+        }
       }
       img {
         display: none;
