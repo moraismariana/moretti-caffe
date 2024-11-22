@@ -3,7 +3,7 @@
   // position: relative;
   .sobre-introducao-bg {
     position: relative;
-    top: 46%;
+    top: calc(50svh - 96px);
     transform: translateY(-50%);
     padding-top: 22vh;
     padding-bottom: 22vh;
@@ -28,28 +28,28 @@
     bottom: 0;
     left: 5%;
     background-color: $c3;
-    @include screen(mobile) {
-      display: none;
-    }
+    // @include screen(mobile) {
+    //   display: none;
+    // }
   }
-  @include screen(mobile) {
-    .sobre-introducao {
-      height: 100svh;
-    }
-    .sobre-introducao-bg {
-      position: absolute;
-      transform: none;
-      top: 0;
-      left: 0;
-      padding-top: 0;
-      padding-bottom: 0;
-      width: 100%;
-      height: 100%;
-    }
-    .sobre-introducao-text {
-      position: relative;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-  }
+  // @include screen(mobile) {
+  //   .sobre-introducao {
+  //     height: 100svh;
+  //   }
+  //   .sobre-introducao-bg {
+  //     position: absolute;
+  //     transform: none;
+  //     top: 0;
+  //     left: 0;
+  //     padding-top: 0;
+  //     padding-bottom: 0;
+  //     width: 100%;
+  //     height: 100%;
+  //   }
+  //   .sobre-introducao-text {
+  //     position: relative;
+  //     top: 50%;
+  //     transform: translateY(-50%);
+  //   }
+  // }
 }
