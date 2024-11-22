@@ -7,15 +7,25 @@
     @include mtop-2-2;
     min-height: calc(100vh - 275px);
   }
+  @include screen(mobile) {
+    @include mtop-3;
+    @include mbottom-2;
+  }
   h1 {
     @include title-3;
     @include mbottom-2;
     text-align: center;
+    @include screen(mobile) {
+      @include mbottom-2-2;
+    }
   }
   .cardapio-pratos-flex {
     display: flex;
     gap: 36px 20px;
     flex-wrap: wrap;
+    @include screen(mobile) {
+      gap: $spacing-2-2;
+    }
   }
   .cardapio-prato {
     flex: 1 0 250px;
@@ -60,7 +70,7 @@
       );
     }
     & > p {
-      @include text-1;
+      @include text-2;
       font-size: px-rem(18px);
 
       text-align: center;

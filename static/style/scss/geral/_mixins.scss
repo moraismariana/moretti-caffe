@@ -81,6 +81,10 @@ $spacing-3-2: px-rem(20px);
   margin-bottom: $spacing-2;
 }
 
+@mixin mbottom-2-2 {
+  margin-bottom: $spacing-2-2;
+}
+
 @mixin mbottom-3 {
   margin-bottom: $spacing-3;
 }

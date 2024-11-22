@@ -17,11 +17,14 @@
 
 <body>
     <header class="header2">
+        <script>
+            window.LOGO_URL = '../../static/img/svg/';
+        </script>
         <a href="../">
             <img src="../../static/img/svg/left-arrow.svg" alt="Seta para o lado">
         </a>
         <a href="../../">
-            <img src="../../static/img/svg/Logo.svg" alt="Moretti Caffè">
+            <img data-logo-menu src="../../static/img/svg/Logo.svg" alt="Moretti Caffè">
         </a>
     </header>
     <article class="cardapio-categoria">
@@ -64,6 +67,8 @@
     <footer class="footer">
         <p>Desenvolvido por Mariana Morais © 2024.</p>
     </footer>
+
+    <script type="module" src="../../static/js/script.js"></script>
 </body>
 
 </html>

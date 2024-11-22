@@ -87,7 +87,13 @@
   font-family: "Afacad";
   font-size: px-rem(20px);
   font-weight: 400;
-  @include screen(notebook-s) {
-    font-size: px-rem(20px);
+}
+
+@mixin text-2 {
+  font-family: "Afacad";
+  font-size: px-rem(20px);
+  font-weight: 400;
+  @include screen(tablet) {
+    font-size: px-rem(18px);
   }
 }
