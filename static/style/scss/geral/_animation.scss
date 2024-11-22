@@ -1,0 +1,30 @@
+// EFEITO DE SCROLL
+// transição fade in
+.js [data-scroll-element="to-right"] {
+  transform: translate3d(-20px, 0, 0);
+  opacity: 0;
+  transition: 0.5s ease;
+}
+
+.js [data-scroll-element="to-left"] {
+  transform: translate3d(20px, 0, 0);
+  opacity: 0;
+  transition: 0.5s ease;
+}
+
+.js [data-scroll-element="to-top"] {
+  transform: translate3d(0, 20px, 0);
+  opacity: 0;
+  transition: 0.5s ease;
+}
+
+.js [data-scroll-element="to-bottom"] {
+  transform: translate3d(0, -20px, 0);
+  opacity: 0;
+  transition: 0.5s ease;
+}
+
+.js .transition-element--visible {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
