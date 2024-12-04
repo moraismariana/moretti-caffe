@@ -34,6 +34,10 @@
         img {
           display: block;
           animation: show-right 0.5s forwards;
+          @include screen(mobile) {
+            display: none;
+            animation: none;
+          }
         }
       }
     }
