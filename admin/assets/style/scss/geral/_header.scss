@@ -1,0 +1,52 @@
+.header {
+  @include container;
+  box-sizing: border-box;
+
+  position: relative;
+  height: 92.5px;
+  padding-top: $s2;
+  padding-bottom: $s2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  & > img {
+    position: absolute;
+    max-width: 64px;
+    left: 50%;
+    top: $s2;
+    transform: translateX(-50%);
+    @include screen(notebook-m) {
+      max-width: 60px;
+      top: $s2 + px-rem(2px);
+    }
+    @include screen(tablet) {
+      max-width: 52px;
+      top: $s2 + px-rem(6px);
+    }
+  }
+  a:nth-of-type(1) {
+    @include arrow-link;
+    box-sizing: border-box;
+    margin-left: $s1;
+    @include screen(tablet) {
+      p {
+        display: none;
+      }
+    }
+  }
+  button {
+    @include button;
+    font-size: 1em;
+    img {
+      display: none;
+    }
+    @include screen(tablet) {
+      img {
+        display: block;
+      }
+      p {
+        display: none;
+      }
+    }
+  }
+}

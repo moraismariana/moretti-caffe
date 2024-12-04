@@ -1,0 +1,81 @@
+// FORMUÁRIO API (CREATE, UPDATE, DELETE)
+.api-modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
+  // justify-content: center;
+  // align-items: center;
+  &.ativo {
+    display: block;
+  }
+}
+
+.api-modal {
+  position: fixed;
+  bottom: -50svh;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  box-sizing: border-box;
+  background-color: $w2;
+  width: 400px;
+  padding: $s6;
+  @include border;
+  position: relative;
+  @include screen(mobile) {
+    padding: $s6 $s5;
+    max-width: 90%;
+  }
+  h2 {
+    text-align: center;
+    @include title-2;
+    color: $c1;
+    margin-bottom: $s4;
+  }
+  p {
+    @include text-2;
+  }
+  label {
+    display: block;
+    @include text-1;
+    margin-left: $s4;
+    margin-bottom: $s2;
+    margin-top: $s4;
+    font-weight: 500;
+  }
+  input,
+  textarea {
+    background-color: $w2;
+    font-size: px-rem(14px);
+    border: 2px solid $w4;
+    border-radius: 50px;
+    padding: $s1 + px-rem(2px) $s4;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    resize: none;
+    &:focus {
+      border: 2px solid $c2;
+    }
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  .cancel-button {
+    @include button;
+  }
+  .send-button {
+    @include button-2;
+  }
+  .api-buttons {
+    justify-content: end;
+    display: flex;
+    gap: $s2;
+    width: 100%;
+    margin-top: $s4;
+  }
+}

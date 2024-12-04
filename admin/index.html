@@ -4,17 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moretti Caffè | Painel Administração</title>
+    <title>Painel de Administração</title>
+
+    <link rel="stylesheet" href="./assets/style/css/style.css">
+
+    <!-- tipografias -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <script>document.documentElement.className += " js";</script>
 </head>
 
-<body>
-    <h1>Painel de Administração</h1>
-    <p>O que você deseja fazer?</p>
-    <ul>
-        <li><a href="./edit/">Editar conteúdo</a></li>
-        <li><a href="./cardapio/">Editar cardápio</a></li>
-        <li><a href="./estatisticas/">Estatísticas de visitantes</a></li>
-    </ul>
+<body id="painel-admin">
+    <header class="header">
+        <img src="./assets/img/logo.svg" alt="Logo Mariana Morais">
+    </header>
+    <div class="painel-admin-conteudo" data-list-size data-list-size-tam="3">
+        <article class="painel-admin-intro">
+            <h1>Painel de Administração</h1>
+            <p>O que você deseja fazer?</p>
+        </article>
+        <section class="painel-admin-nav">
+            <ul>
+                <li data-list-size-item><a href="./cms/">Editar conteúdo do site <img src="./assets/img/right-arrow.svg" alt="Seta para abrir edição de conteúdo"></a></li>
+                <li data-list-size-item><a href="./cardapio/">Editar cardápio <img src="./assets/img/right-arrow.svg" alt="Seta para abrir edição de cardápio"></a></li>
+                <li data-list-size-item><a href="./estatisticas/">Estatísticas de visitantes <img src="./assets/img/right-arrow.svg" alt="Seta para abrir estatísticas de visitantes"></a></li>
+            </ul>
+        </section>
+    </div>
+    <footer class="footer">
+        <p>Desenvolvido por Mariana Morais © 2024.</p>
+    </footer>
+    <script type="module" src="./assets/js/script.js"></script>
 </body>
 
 </html>

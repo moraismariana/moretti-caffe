@@ -4,11 +4,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moretti Caffè | Estatísticas de visitantes</title>
+    <title>Estatísticas de Visitantes</title>
+
+    <link rel="stylesheet" href="../assets/style/css/style.css">
+
+    <!-- tipografias -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <script>document.documentElement.className += " js";</script>
 </head>
 
-<body>
+<body id="estatisticas">
+    <header class="header">
+        <a href="../">
+            <img src="../assets/img/left-arrow.svg" alt="Voltar para o painel de administração">
+            <p>Painel de Administração</p>
+        </a>
+        <img src="../assets/img/logo.svg" alt="Logo Mariana Morais">
+    </header>
+    <article class="estatisticas-intro">
+        <h1>Estatísticas de visitantes</h1>
+    </article>
+    <section class="estatisticas-opcoes">
+        <ul>
+            <li>geral</li>
+            <li>últimos 30 dias</li>
+            <li>últimos 15 dias</li>
+            <li>últimos 7 dias</li>
+            <li>hoje</li>
+        </ul>
+    </section>
+    <section class="estatisticas-contagem">
+        <h2>Contagem de visitantes</h2>
+        <p><span>171</span>visitantes nos últimos 7 dias</p>
+    </section>
+    <section class="estatisticas-paginas">
+        <h2>Detalhes das páginas</h2>
+        <ul>
+            <li>
+                <p>Página inicial</p>
+                <p>20 acessos</p>
+            </li>
+            <li>
+                <p>Cardápio</p>
+                <p>141 acessos</p>
+            </li>
+            <li>
+                <p>Sobre</p>
+                <p>10 acessos</p>
+            </li>
+        </ul>
+    </section>
+    <section class="estatisticas-links-externos">
+        <h2>Toques em links externos</h2>
+        <ul>
+            <li>
+                <p>Link de contato</p>
+                <p>20 toques</p>
+            </li>
+        </ul>
+    </section>
+    <footer class="footer">
+        <p>Desenvolvido por Mariana Morais © 2024.</p>
+    </footer>
 
+    <script type="module" src="../assets/js/script.js"></script>
 </body>
 
 </html>

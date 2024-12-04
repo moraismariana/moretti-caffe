@@ -1,0 +1,31 @@
+// Reset / definições iniciais
+@import "./geral/colors";
+@import "./geral/functions";
+@import "./geral/mixins";
+@import "./geral/global";
+@import "./geral/typo";
+@import "./geral/animations";
+@import "./geral/api-modal";
+
+@import "./geral/header";
+@import "./geral/footer";
+
+// Páginas do site
+
+// Painel de Administração
+@import "./painel-admin/painel-admin";
+
+// Cardápio
+@import "./cardapio/cardapio";
+
+// Categoria
+@import "./categoria/categoria";
+
+// Estatísticas
+@import "./estatisticas/estatisticas";
+
+// Login
+@import "./login/login";
+
+// CMS
+@import "./cms/cms";

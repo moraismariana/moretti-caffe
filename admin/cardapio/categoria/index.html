@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edição de Cardápio | Categoria</title>
+
+    <link rel="stylesheet" href="../../assets/style/css/style.css">
+
+    <!-- tipografias -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <script>document.documentElement.className += " js";</script>
+</head>
+
+<body id="categoria">
+    <header class="header">
+        <a href="../">
+            <img src="../../assets/img/left-arrow.svg" alt="Voltar para categorias">
+            <p>Categorias</p>
+        </a>
+        <img src="../../assets/img/logo.svg" alt="Logo Mariana Morais">
+        <button data-modal="abrir" data-modal-type="create-prato">
+            <img src="../../assets/img/add.svg" alt="Criar novo prato">
+            <p>Criar novo prato</p>
+        </button>
+    </header>
+    <div class="categoria-conteudo" data-list-size data-list-size-tam="2">
+        <article class="categoria-intro">
+            <h1>Edição de Cardápio</h1>
+            <h2>Categoria</h2>
+        </article>
+        <section class="categoria-nav">
+            <ul>
+                <li data-list-size-item>
+                    <div>
+                        <h3>Bruschetta Al Pomodoro <span>R$ 22,00</span></h3>
+                        <p>Fatias de pão rústico com tomates frescos, manjericão, azeite extravirgem e alho assado, levemente tostadas.</p>
+                    </div>
+                    <div>
+                        <button data-modal="abrir" data-modal-type="update-prato"><img src="../../assets/img/edit.svg" alt="Editar prato"></button>
+                        <button data-modal="abrir" data-modal-type="delete-prato"><img src="../../assets/img/delete.svg" alt="Deletar prato"></button>
+                    </div>
+                </li>
+                <li data-list-size-item>
+                    <div>
+                        <h3>Bruschetta Al Pomodoro <span>R$ 22,00</span></h3>
+                        <p>Fatias de pão rústico com tomates frescos, manjericão, azeite extravirgem e alho assado, levemente tostadas.</p>
+                    </div>
+                    <div>
+                        <button data-modal="abrir" data-modal-type="update-prato"><img src="../../assets/img/edit.svg" alt="Editar prato"></button>
+                        <button data-modal="abrir" data-modal-type="delete-prato"><img src="../../assets/img/delete.svg" alt="Deletar prato"></button>
+                    </div>
+                </li>
+                <li data-list-size-item>
+                    <div>
+                        <h3>Bruschetta Al Pomodoro <span>R$ 22,00</span></h3>
+                        <p>Fatias de pão rústico com tomates frescos, manjericão, azeite extravirgem e alho assado, levemente tostadas.</p>
+                    </div>
+                    <div>
+                        <button data-modal="abrir" data-modal-type="update-prato"><img src="../../assets/img/edit.svg" alt="Editar prato"></button>
+                        <button data-modal="abrir" data-modal-type="delete-prato"><img src="../../assets/img/delete.svg" alt="Deletar prato"></button>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </div>
+    <footer class="footer">
+        <p>Desenvolvido por Mariana Morais © 2024.</p>
+    </footer>
+
+    <section class="api-modal-container" data-modal="container" data-modal-type="create-prato">
+        <div class="api-modal">
+            <h2>Novo prato</h2>
+            <form id="create-prato" action="">
+                <label for="create-prato-nome">Nome</label>
+                <input type="text" for="create-prato-nome" id="create-prato-nome">
+
+                <label for="create-prato-preco">Preço</label>
+                <input type="text" for="create-prato-preco" id="create-prato-preco">
+
+                <label for="create-prato-desc">Descrição</label>
+                <textarea name="create-prato-desc" id="create-prato-desc"></textarea>
+
+                <div class="api-buttons">
+                    <button data-modal="fechar" data-modal-type="create-prato" class="cancel-button">Cancelar</button>
+                    <button class="send-button" type="submit">Criar</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="api-modal-container" data-modal="container" data-modal-type="update-prato">
+        <div class="api-modal">
+            <h2>Editar prato</h2>
+            <form id="update-prato" action="">
+                <label for="update-prato-nome">Nome</label>
+                <input type="text" for="update-prato-nome" id="update-prato-nome">
+
+                <label for="update-prato-preco">Preço</label>
+                <input type="text" for="update-prato-preco" id="update-prato-preco">
+
+                <label for="update-prato-desc">Descrição</label>
+                <textarea name="update-prato-desc" id="update-prato-desc"></textarea>
+
+                <div class="api-buttons">
+                    <button data-modal="fechar" data-modal-type="update-prato" class="cancel-button">Cancelar</button>
+                    <button class="send-button" type="submit">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="api-modal-container" data-modal="container" data-modal-type="delete-prato">
+        <div class="api-modal">
+            <h2>Excluir prato?</h2>
+            <p>Essa ação irá excluir o prato de forma permanente.</p>
+            <form id="delete-prato" action="">
+                <div class="api-buttons">
+                    <button data-modal="fechar" data-modal-type="delete-prato" class="cancel-button">Cancelar</button>
+                    <button class="send-button" type="submit">Excluir</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script type="module" src="../../assets/js/script.js"></script>
+</body>
+
+</html>

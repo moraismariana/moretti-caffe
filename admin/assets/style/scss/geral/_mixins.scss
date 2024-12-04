@@ -1,0 +1,147 @@
+// GERAL
+// CONTAINER
+@mixin container {
+  box-sizing: border-box;
+  max-width: 1300px;
+  padding: 0 60px;
+  margin-left: auto;
+  margin-right: auto;
+  @include screen(notebook-s) {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  @include screen(mobile) {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+// ALIGN-DIV
+@mixin align-div {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// RESPONSIVIDADE
+@mixin screen($tela) {
+  @if $tela == "mobile" {
+    @media (max-width: 480px) {
+      @content;
+    }
+  } @else if $tela == "tablet" {
+    @media (max-width: 768px) {
+      @content;
+    }
+  } @else if $tela == "notebook-s" {
+    @media (max-width: 1024px) {
+      @content;
+    }
+  } @else if $tela == "notebook-m" {
+    @media (max-width: 1300px) {
+      @content;
+    }
+  }
+}
+
+@mixin resp-width($tela) {
+  @media (max-width: $tela) {
+    @content;
+  }
+}
+@mixin resp-height($tela) {
+  @media (max-height: $tela) {
+    @content;
+  }
+}
+
+// ESPAÇAMENTOS
+$s1: px-rem(8px);
+$s2: px-rem(12px);
+$s3: px-rem(16px);
+$s4: px-rem(20px);
+$s5: px-rem(28px);
+$s6: px-rem(40px);
+$s7: px-rem(60px);
+$s8: px-rem(70px);
+$s9: px-rem(80px);
+$s10: px-rem(120px);
+$s11: px-rem(160px);
+
+// ESPECÍFICO
+// border-radius
+@mixin border {
+  border-radius: 16px;
+}
+
+// shadow
+@mixin shadow {
+  box-shadow: 0 6px 8px rgba(118, 139, 171, 0.1);
+  transition: 0.3s;
+  &:hover {
+    box-shadow: 0 6px 10px rgba(118, 139, 171, 0.2);
+  }
+}
+
+@mixin box-shadow {
+  -webkit-tap-highlight-color: transparent;
+  margin-left: $s1;
+  margin-right: $s1;
+  background-color: $w1;
+  display: block;
+  padding: $s5 $s6;
+  @include border;
+  @include shadow;
+  &:hover {
+    margin-left: 0;
+    margin-right: 0;
+    // padding: $s5 + px-rem(2px) $s6;
+  }
+  @include screen(tablet) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@mixin button {
+  -webkit-tap-highlight-color: transparent;
+  background-color: $w1;
+  cursor: pointer;
+  @include text-2;
+  @include shadow;
+  padding: $s2 $s4;
+  border-radius: 50px;
+  outline: none;
+  border: none;
+  color: $c2;
+  &:hover {
+    padding: $s2 $s4 + px-rem(2px);
+    font-weight: 500;
+  }
+}
+
+@mixin button-2 {
+  -webkit-tap-highlight-color: transparent;
+  background-color: $c2;
+  color: $w1;
+  border: none;
+  cursor: pointer;
+  @include text-2;
+  padding: $s2 $s4;
+  border-radius: 50px;
+  transition: 0.3s;
+  &:hover {
+    padding: $s2 $s4 + px-rem(2px);
+    font-weight: 500;
+  }
+}
+
+@mixin arrow-link {
+  -webkit-tap-highlight-color: transparent;
+  @include button;
+  font-size: 1em;
+  // padding-left: $s1;
+  display: flex;
+  max-width: fit-content;
+  align-items: center;
+  gap: $s4;
+}

@@ -4,11 +4,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moretti Caffè | Edição de cardápio</title>
+    <title>Edição de Cardápio</title>
+
+    <link rel="stylesheet" href="../assets/style/css/style.css">
+
+    <!-- tipografias -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <script>document.documentElement.className += " js";</script>
 </head>
 
-<body>
+<body id="cardapio">
+    <header class="header">
+        <a href="../">
+            <img src="../assets/img/left-arrow.svg" alt="Voltar para o painel de administração">
+            <p>Painel de Administração</p>
+        </a>
+        <img src="../assets/img/logo.svg" alt="Logo Mariana Morais">
+        <button data-modal="abrir" data-modal-type="create-categoria">
+            <img src="../assets/img/add.svg" alt="Criar categoria">
+            <p>Criar categoria</p>
+        </button>
+    </header>
+    <div class="cardapio-conteudo" data-list-size data-list-size-tam="3">
+        <article class="cardapio-intro">
+            <h1>Edição de Cardápio</h1>
+            <h2>Categorias</h2>
+        </article>
+        <section class="cardapio-nav">
+            <ul>
+                <li data-list-size-item>
+                    <a href="./categoria/">
+                        <p>Entradas</p>
+                    </a>
+                    <div>
+                        <button data-modal="abrir" data-modal-type="update-categoria"><img src="../assets/img/edit.svg" alt="Editar categoria"></button>
+                        <button data-modal="abrir" data-modal-type="delete-categoria"><img src="../assets/img/delete.svg" alt="Deletar categoria"></button>
+                    </div>
+                </li>
+                <li data-list-size-item>
+                    <a href="./categoria/">
+                        <p>Saladas</p>
+                    </a>
+                    <div>
+                        <button data-modal="abrir" data-modal-type="update-categoria"><img src="../assets/img/edit.svg" alt="Editar categoria"></button>
+                        <button data-modal="abrir" data-modal-type="delete-categoria"><img src="../assets/img/delete.svg" alt="Deletar categoria"></button>
+                    </div>
+                </li>
+                <li data-list-size-item>
+                    <a href="./categoria/">
+                        <p>Sanduíches</p>
+                    </a>
+                    <div>
+                        <button data-modal="abrir" data-modal-type="update-categoria"><img src="../assets/img/edit.svg" alt="Editar categoria"></button>
+                        <button data-modal="abrir" data-modal-type="delete-categoria"><img src="../assets/img/delete.svg" alt="Deletar categoria"></button>
+                    </div>
+                </li>
+                <li data-list-size-item>
+                    <a href="./categoria/">
+                        <p>Pratos principais</p>
+                    </a>
+                    <div>
+                        <button data-modal="abrir" data-modal-type="update-categoria"><img src="../assets/img/edit.svg" alt="Editar categoria"></button>
+                        <button data-modal="abrir" data-modal-type="delete-categoria"><img src="../assets/img/delete.svg" alt="Deletar categoria"></button>
+                    </div>
+                </li>
+                <li data-list-size-item>
+                    <a href="./categoria/">
+                        <p>Sobremesas</p>
+                    </a>
+                    <div>
+                        <button data-modal="abrir" data-modal-type="update-categoria"><img src="../assets/img/edit.svg" alt="Editar categoria"></button>
+                        <button data-modal="abrir" data-modal-type="delete-categoria"><img src="../assets/img/delete.svg" alt="Deletar categoria"></button>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </div>
+    <footer class="footer">
+        <p>Desenvolvido por Mariana Morais © 2024.</p>
+    </footer>
 
+    <section class="api-modal-container" data-modal="container" data-modal-type="create-categoria">
+        <div class="api-modal">
+            <h2>Nova categoria</h2>
+            <form id="create-categoria" action="">
+                <label for="create-categoria-nome">Nome</label>
+                <input type="text" for="create-categoria-nome" id="create-categoria-nome">
+                <div class="api-buttons">
+                    <button data-modal="fechar" data-modal-type="create-categoria" class="cancel-button">Cancelar</button>
+                    <button class="send-button" type="submit">Criar</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="api-modal-container" data-modal="container" data-modal-type="update-categoria">
+        <div class="api-modal">
+            <h2>Editar categoria</h2>
+            <form id="update-categoria" action="">
+                <label for="update-categoria-nome">Nome</label>
+                <input type="text" for="update-categoria-nome" id="update-categoria-nome">
+                <div class="api-buttons">
+                    <button data-modal="fechar" data-modal-type="update-categoria" class="cancel-button">Cancelar</button>
+                    <button class="send-button" type="submit">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="api-modal-container" data-modal="container" data-modal-type="delete-categoria">
+        <div class="api-modal">
+            <h2>Excluir categoria?</h2>
+            <p>Essa ação irá deletar todos os pratos dessa categoria.</p>
+            <form id="delete-categoria" action="">
+                <div class="api-buttons">
+                    <button data-modal="fechar" data-modal-type="delete-categoria" class="cancel-button">Cancelar</button>
+                    <button class="send-button" type="submit">Excluir</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script type="module" src="../assets/js/script.js"></script>
 </body>
 
 </html>

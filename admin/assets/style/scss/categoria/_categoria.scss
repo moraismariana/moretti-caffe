@@ -1,0 +1,135 @@
+#categoria {
+  min-height: 100vh;
+  position: relative;
+  .footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+  }
+}
+
+.categoria-conteudo[data-list-size-p="true"] {
+  position: relative;
+  top: calc(50vh - 100px);
+  transform: translateY(-50%);
+  @include resp-height(730px) {
+    position: static;
+    transform: none;
+  }
+}
+
+.categoria-intro {
+  @include container;
+  text-align: center;
+  margin-top: $s8;
+  margin-bottom: $s8;
+  @include screen(tablet) {
+    margin-top: $s6;
+    margin-bottom: $s6;
+  }
+  h1 {
+    @include title-1;
+    color: $c1;
+    margin-bottom: $s1;
+  }
+  h2 {
+    @include title-2;
+    color: $c2;
+  }
+}
+
+.categoria-nav {
+  @include container;
+  padding-bottom: $s10 + px-rem(51px);
+  @include screen(tablet) {
+    padding-bottom: $s9 + px-rem(51px);
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: $s4;
+  }
+  li {
+    @include box-shadow;
+    cursor: default;
+    padding: 0;
+    display: flex;
+    gap: $s5;
+    align-items: center;
+    justify-content: space-between;
+
+    div:nth-of-type(1) {
+      padding: $s5 0 $s5 $s6;
+      h3 {
+        @include text-1;
+        margin-bottom: $s2;
+        display: flex;
+        gap: $s5;
+        align-items: end;
+        span {
+          color: $c3;
+          @include text-2;
+          white-space: nowrap;
+        }
+        @include screen(tablet) {
+          flex-direction: column-reverse;
+          align-items: normal;
+          gap: $s2;
+        }
+      }
+      p {
+        color: $c3;
+        @include text-2;
+      }
+      @include screen(tablet) {
+        padding: $s5 $s6;
+        min-width: 0;
+      }
+    }
+    div:nth-of-type(2) {
+      min-width: 70px;
+      // box-sizing: border-box;
+
+      padding: $s5 $s6 $s5 0;
+      display: flex;
+      align-items: center;
+      gap: $s2;
+      @include screen(tablet) {
+        padding: 0 $s6 $s5 $s6;
+        min-width: 0;
+        margin-left: auto;
+      }
+      @include screen(mobile) {
+        gap: $s1;
+        min-width: 60px;
+      }
+      button {
+        cursor: pointer;
+        background-color: $w1;
+        outline: none;
+        border: none;
+        padding: none;
+        -webkit-tap-highlight-color: transparent;
+        min-width: 24px;
+        min-height: 24px;
+        &:nth-of-type(1) {
+          img {
+            min-width: 17px;
+            min-height: 17px;
+          }
+        }
+        &:nth-of-type(2) {
+          img {
+            min-width: 15px;
+            min-height: 15px;
+          }
+        }
+      }
+    }
+    @include screen(tablet) {
+      flex-direction: column;
+      gap: 0;
+    }
+  }
+}
