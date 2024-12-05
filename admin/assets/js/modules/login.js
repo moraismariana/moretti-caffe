@@ -1,4 +1,8 @@
 export default function initLogin() {
+  /*
+  Função que envia requisição para API, recebe e armazena o acessToken e refreshToken.
+  */
+
   const loginForm = document.querySelector("#login-form");
   if (loginForm) {
     loginForm.addEventListener("submit", (event) => {
@@ -24,6 +28,7 @@ export default function initLogin() {
           if (data.access && data.refresh) {
             localStorage.setItem("accessToken", data.access);
             localStorage.setItem("refreshToken", data.refresh);
+            localStorage.setItem("loginTime", Date.now());
             window.location.href = "http://127.0.0.1:5500/admin/";
           } else if (data.detail) {
             const alerta = document.querySelector(".login-form-alert");
