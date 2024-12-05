@@ -19,7 +19,7 @@ export default function initModal() {
         if (container.dataset.modalType === botao.dataset.modalType) {
           botao.addEventListener("click", (event) => {
             event.preventDefault();
-            container.classList.toggle("ativo");
+            container.classList.add("ativo");
           });
         }
       });
@@ -30,7 +30,7 @@ export default function initModal() {
         if (container.dataset.modalType === botao.dataset.modalType) {
           botao.addEventListener("click", (event) => {
             event.preventDefault();
-            container.classList.toggle("ativo");
+            container.classList.remove("ativo");
           });
         }
       });
@@ -39,9 +39,22 @@ export default function initModal() {
     containerModal.forEach((container) => {
       container.addEventListener("mousedown", (event) => {
         if (event.target === container) {
-          container.classList.toggle("ativo");
+          container.classList.remove("ativo");
         }
       });
     });
   }
+}
+
+// Observador para repetir a função caso ocorra mudança no DOM
+const observer = new MutationObserver(() => {
+  initModal();
+});
+
+const container = document.querySelector("[data-get-api-container]");
+if (container) {
+  observer.observe(container, {
+    childList: true, // Observa alterações nos filhos
+    subtree: true, // Inclui subárvores no monitoramento
+  });
 }
