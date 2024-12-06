@@ -22,8 +22,8 @@ export default function initGetObjectsAPI() {
                         <p>${item.nome}</p>
                     </a>
                     <div>
-                        <button data-categoria="${item.nome}" data-modal="abrir" data-modal-type="update-categoria"><img src="../assets/img/edit.svg" alt="Editar categoria"></button>
-                        <button data-categoria="${item.nome}" data-modal="abrir" data-modal-type="delete-categoria"><img src="../assets/img/delete.svg" alt="Deletar categoria"></button>
+                        <button data-categoria-id="${item.id}" data-categoria-nome="${item.nome}" data-modal="abrir" data-modal-type="update-categoria"><img src="../assets/img/edit.svg" alt="Editar categoria"></button>
+                        <button data-categoria-id="${item.id}" data-categoria-nome="${item.nome}" data-modal="abrir" data-modal-type="delete-categoria"><img src="../assets/img/delete.svg" alt="Deletar categoria"></button>
                     </div>`;
             container.appendChild(HTMLElement);
           });

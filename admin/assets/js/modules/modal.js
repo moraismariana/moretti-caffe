@@ -24,20 +24,17 @@ export default function initModal() {
 
             if (container.dataset.modalType != "create-categoria") {
               // alterar URL
-              const nomeAlterado = botao.dataset.categoria
-                .toLowerCase()
-                .replace(/[ ]+/g, "-");
               const typeOfButton = botao.dataset.modalType;
 
               window.history.pushState(
                 null,
                 null,
-                `?c=${nomeAlterado}&t=${typeOfButton}`
+                `?c=${botao.dataset.categoriaId}&t=${typeOfButton}`
               );
 
               // atualizar valor do input
               const input = document.getElementById("update-categoria-nome");
-              input.value = botao.dataset.categoria;
+              input.value = botao.dataset.categoriaNome;
             }
           });
         }
