@@ -1,6 +1,6 @@
 import refreshToken from "./refresh-token.js";
 
-export default function initPostAPI() {
+export default function initCreateObjectsAPI() {
   /* Função para enviar dados para API */
   //   401 > token expirado ( precisa dar refresh)
   //   403 > não tem autorização para mudar a rota

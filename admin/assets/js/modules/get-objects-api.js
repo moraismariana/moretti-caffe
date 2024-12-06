@@ -1,4 +1,4 @@
-export default function initGetAPI() {
+export default function initGetObjectsAPI() {
   /*
   Função para pegar dados da API na tela de Cardápio e na tela de Categoria
   */
@@ -22,8 +22,8 @@ export default function initGetAPI() {
                         <p>${item.nome}</p>
                     </a>
                     <div>
-                        <button data-modal="abrir" data-modal-type="update-categoria"><img src="../assets/img/edit.svg" alt="Editar categoria"></button>
-                        <button data-modal="abrir" data-modal-type="delete-categoria"><img src="../assets/img/delete.svg" alt="Deletar categoria"></button>
+                        <button data-categoria="${item.nome}" data-modal="abrir" data-modal-type="update-categoria"><img src="../assets/img/edit.svg" alt="Editar categoria"></button>
+                        <button data-categoria="${item.nome}" data-modal="abrir" data-modal-type="delete-categoria"><img src="../assets/img/delete.svg" alt="Deletar categoria"></button>
                     </div>`;
             container.appendChild(HTMLElement);
           });

@@ -18,8 +18,27 @@ export default function initModal() {
       containerModal.forEach((container) => {
         if (container.dataset.modalType === botao.dataset.modalType) {
           botao.addEventListener("click", (event) => {
+            // ativar modal
             event.preventDefault();
             container.classList.add("ativo");
+
+            if (container.dataset.modalType != "create-categoria") {
+              // alterar URL
+              const nomeAlterado = botao.dataset.categoria
+                .toLowerCase()
+                .replace(/[ ]+/g, "-");
+              const typeOfButton = botao.dataset.modalType;
+
+              window.history.pushState(
+                null,
+                null,
+                `?c=${nomeAlterado}&t=${typeOfButton}`
+              );
+
+              // atualizar valor do input
+              const input = document.getElementById("update-categoria-nome");
+              input.value = botao.dataset.categoria;
+            }
           });
         }
       });
@@ -31,6 +50,9 @@ export default function initModal() {
           botao.addEventListener("click", (event) => {
             event.preventDefault();
             container.classList.remove("ativo");
+            if (container.dataset.modalType != "create-categoria") {
+              window.history.back();
+            }
           });
         }
       });
@@ -40,6 +62,9 @@ export default function initModal() {
       container.addEventListener("mousedown", (event) => {
         if (event.target === container) {
           container.classList.remove("ativo");
+          if (container.dataset.modalType != "create-categoria") {
+            window.history.back();
+          }
         }
       });
     });
