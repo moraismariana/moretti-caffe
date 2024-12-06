@@ -31,8 +31,7 @@ export default function initLogin() {
             localStorage.setItem("loginTime", Date.now());
             window.location.href = "http://127.0.0.1:5500/admin/";
           } else if (data.detail) {
-            const alerta = document.querySelector(".login-form-alert");
-            alerta.classList.add("ativo");
+            const alerta = document.querySelector(".form-alert");
             alerta.innerHTML = data.detail;
             console.log(data.detail);
           }

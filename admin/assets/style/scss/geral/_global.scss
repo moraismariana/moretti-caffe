@@ -60,3 +60,10 @@ img {
   margin-left: auto;
   margin-right: auto;
 }
+
+.form-alert {
+  font-size: 1em;
+  color: $c-alert;
+  text-align: end;
+  margin-top: $s4;
+}

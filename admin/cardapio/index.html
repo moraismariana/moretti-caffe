@@ -92,9 +92,10 @@
             <h2>Nova categoria</h2>
             <form id="create-categoria" action="">
                 <label for="create-categoria-nome">Nome</label>
-                <input type="text" for="create-categoria-nome" id="create-categoria-nome">
+                <input type="text" for="create-categoria-nome" id="create-categoria-nome" name="create-categoria-nome">
+                <p class="form-alert"></p>
                 <div class="api-buttons">
-                    <button data-modal="fechar" data-modal-type="create-categoria" class="cancel-button">Cancelar</button>
+                    <button data-modal="fechar" data-modal-type="create-categoria" class="cancel-button" type="button">Cancelar</button>
                     <button class="send-button" type="submit">Criar</button>
                 </div>
             </form>
@@ -108,7 +109,7 @@
                 <label for="update-categoria-nome">Nome</label>
                 <input type="text" for="update-categoria-nome" id="update-categoria-nome">
                 <div class="api-buttons">
-                    <button data-modal="fechar" data-modal-type="update-categoria" class="cancel-button">Cancelar</button>
+                    <button data-modal="fechar" data-modal-type="update-categoria" class="cancel-button" type="button">Cancelar</button>
                     <button class="send-button" type="submit">Salvar</button>
                 </div>
             </form>
@@ -121,7 +122,7 @@
             <p>Essa ação irá deletar todos os pratos dessa categoria.</p>
             <form id="delete-categoria" action="">
                 <div class="api-buttons">
-                    <button data-modal="fechar" data-modal-type="delete-categoria" class="cancel-button">Cancelar</button>
+                    <button data-modal="fechar" data-modal-type="delete-categoria" class="cancel-button" type="button">Cancelar</button>
                     <button class="send-button" type="submit">Excluir</button>
                 </div>
             </form>
