@@ -67,16 +67,3 @@ export default function initModal() {
     });
   }
 }
-
-// Observador para repetir a função caso ocorra mudança no DOM
-const observer = new MutationObserver(() => {
-  initModal();
-});
-
-const container = document.querySelector("[data-get-api-container]");
-if (container) {
-  observer.observe(container, {
-    childList: true, // Observa alterações nos filhos
-    subtree: true, // Inclui subárvores no monitoramento
-  });
-}

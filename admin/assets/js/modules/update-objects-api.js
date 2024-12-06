@@ -21,7 +21,7 @@ export default function initUpdateObjectsAPI() {
         nome: novoNomeCategoria,
       });
 
-      let options = {
+      const options = {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -29,8 +29,6 @@ export default function initUpdateObjectsAPI() {
         },
         body: body,
       };
-
-      console.log(body);
 
       function atualizarCategoria() {
         fetch(`http://127.0.0.1:8000/categorias/${idCategoria}/`, options)

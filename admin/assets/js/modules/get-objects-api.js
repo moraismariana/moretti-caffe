@@ -1,3 +1,6 @@
+import initModal from "./modal.js";
+import initListSizeStyle from "./list-size-style.js";
+
 export default function initGetObjectsAPI() {
   /*
   Função para pegar dados da API na tela de Cardápio e na tela de Categoria
@@ -8,7 +11,9 @@ export default function initGetObjectsAPI() {
   if (container) {
     if (container.dataset.getApiContainer === "cardapio") {
       fetch("http://127.0.0.1:8000/categorias/")
-        .then((response) => response.json())
+        .then((response) => {
+          return response.json();
+        })
         .then((data) => {
           data.forEach((item) => {
             let nomeAlterado = item.nome.toLowerCase().replace(/[ ]+/g, "-");
@@ -28,7 +33,11 @@ export default function initGetObjectsAPI() {
             container.appendChild(HTMLElement);
           });
         })
-        .catch((erro) => {
+        .then(() => {
+          initModal();
+          initListSizeStyle();
+        })
+        .catch(() => {
           alert(
             "Não foi possível conectar-se ao servidor. Lamentamos o transtorno."
           );
