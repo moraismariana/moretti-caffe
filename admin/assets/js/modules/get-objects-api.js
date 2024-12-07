@@ -8,6 +8,17 @@ export default function initGetObjectsAPI() {
 
   const container = document.querySelector("[data-get-api-container]");
 
+  function armazenarTitulo(links) {
+    links.forEach((link) => {
+      link.addEventListener("click", (event) => {
+        // event.preventDefault();
+
+        console.log(link.innerText);
+        sessionStorage.setItem("categoria", link.innerText);
+      });
+    });
+  }
+
   if (container) {
     if (container.dataset.getApiContainer === "cardapio") {
       fetch("http://127.0.0.1:8000/categorias/")
@@ -16,14 +27,12 @@ export default function initGetObjectsAPI() {
         })
         .then((data) => {
           data.forEach((item) => {
-            let nomeAlterado = item.nome.toLowerCase().replace(/[ ]+/g, "-");
-
             let HTMLElement = document.createElement("li");
 
             HTMLElement.dataset.listSizeItem = "";
 
             HTMLElement.innerHTML = `
-                    <a href="./categoria/?c=${nomeAlterado}">
+                    <a href="./categoria/?c=${item.id}">
                         <p>${item.nome}</p>
                     </a>
                     <div>
@@ -36,6 +45,9 @@ export default function initGetObjectsAPI() {
         .then(() => {
           initModal();
           initListSizeStyle();
+
+          const links = document.querySelectorAll('[href^="./categoria/"]');
+          armazenarTitulo(links);
         })
         .catch(() => {
           alert(
@@ -44,21 +56,17 @@ export default function initGetObjectsAPI() {
         });
     } else if (container.dataset.getApiContainer === "categoria") {
       let titulo = document.querySelector('[data-get-api="categoria-titulo"]');
+      titulo.innerHTML = sessionStorage.categoria;
 
       const params = new URLSearchParams(window.location.search);
-      const URLCategoria = params.get("c");
+      const URLCategoria = +params.get("c");
 
       fetch("http://127.0.0.1:8000/pratos/")
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
           data.forEach((item) => {
-            const nomeAlterado = item.categoria
-              .toLowerCase()
-              .replace(/[ ]+/g, "-");
-            if (nomeAlterado === URLCategoria) {
-              titulo.innerHTML = item.categoria;
-
+            if (item.categoria === URLCategoria) {
               let HTMLElement = document.createElement("li");
 
               HTMLElement.dataset.listSizeItem = "";
@@ -75,6 +83,10 @@ export default function initGetObjectsAPI() {
               container.appendChild(HTMLElement);
             }
           });
+        })
+        .then(() => {
+          initModal();
+          initListSizeStyle();
         })
         .catch((erro) => {
           alert(
