@@ -12,23 +12,13 @@ export default function initListSizeStyle() {
   const listaItens = document.querySelectorAll("[data-list-size-item]");
 
   if (conteudo && listaItens) {
+    if (document.body.id === "categoria" && window.innerWidth <= 768) {
+      conteudo.dataset.listSizeTam = "1";
+    }
     if (listaItens.length <= +conteudo.dataset.listSizeTam) {
       conteudo.dataset.listSizeP = "true";
     } else if (listaItens.length > +conteudo.dataset.listSizeTam) {
       conteudo.dataset.listSizeP = "false";
     }
   }
-}
-
-// Observador para repetir a função caso ocorra mudança no DOM
-const observer = new MutationObserver(() => {
-  initListSizeStyle();
-});
-
-const container = document.querySelector("[data-list-size]");
-if (container) {
-  observer.observe(container, {
-    childList: true, // Observa alterações nos filhos
-    subtree: true, // Inclui subárvores no monitoramento
-  });
 }
