@@ -2,6 +2,7 @@ import refreshToken from "./refresh-token.js";
 
 export default function initDeleteObjectsAPI() {
   const categoriaFormulario = document.getElementById("delete-categoria");
+  const pratoFormulario = document.getElementById("delete-prato");
 
   if (categoriaFormulario) {
     categoriaFormulario.addEventListener("submit", (event) => {
@@ -39,6 +40,45 @@ export default function initDeleteObjectsAPI() {
       }
 
       deletarCategoria();
+    });
+  }
+
+  if (pratoFormulario) {
+    pratoFormulario.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const token = localStorage.getItem("accessToken");
+
+      const params = new URLSearchParams(window.location.search);
+      const idPrato = params.get("id");
+      const idCategoria = params.get("c");
+
+      const options = {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      function deletarPrato() {
+        fetch(`http://127.0.0.1:8000/pratos/${idPrato}/`, options)
+          .then((response) => {
+            if (response.ok) {
+              window.location.href = `http://127.0.0.1:5500/admin/cardapio/categoria/?c=${idCategoria}`;
+            } else if (response.status === 401) {
+              refreshToken().then(() => {
+                const novoToken = localStorage.getItem("accessToken");
+                options.headers.Authorization = `Bearer ${novoToken}`;
+                deletarPrato();
+              });
+            } else if (!response.ok) {
+              return response.json();
+            }
+          })
+          .then((r) => console.log(r));
+      }
+      deletarPrato();
     });
   }
 }
