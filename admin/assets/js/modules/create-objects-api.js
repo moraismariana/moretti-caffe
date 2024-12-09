@@ -90,17 +90,13 @@ export default function initCreateObjectsAPI() {
 
       const token = localStorage.getItem("accessToken");
 
-      const options = {
+      let options = {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
         },
         body: formData,
       };
-
-      for (const [key, value] of formData.entries()) {
-        console.log(key, value);
-      }
 
       function enviarNovoPrato() {
         fetch("http://127.0.0.1:8000/pratos/", options).then((response) => {

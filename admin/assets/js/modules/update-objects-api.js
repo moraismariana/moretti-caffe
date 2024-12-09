@@ -2,6 +2,7 @@ import refreshToken from "./refresh-token.js";
 
 export default function initUpdateObjectsAPI() {
   const categoriaFormulario = document.getElementById("update-categoria");
+  const pratoFormulario = document.getElementById("update-prato");
 
   if (categoriaFormulario) {
     categoriaFormulario.addEventListener("submit", (event) => {
@@ -49,6 +50,73 @@ export default function initUpdateObjectsAPI() {
       }
 
       atualizarCategoria();
+    });
+  }
+
+  if (pratoFormulario) {
+    pratoFormulario.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const novoNome = document.getElementById("update-prato-nome").value;
+      const novoPreco = document.getElementById("update-prato-preco").value;
+      const novaDescricao = document.getElementById("update-prato-desc").value;
+      const novaImagem = document.getElementById("update-prato-imagem")
+        .files[0];
+
+      const formData = new FormData();
+      formData.append("nome", novoNome);
+      formData.append("preco", novoPreco);
+      formData.append("descricao", novaDescricao);
+
+      if (novaImagem) {
+        const blobImagem = new Blob([novaImagem], { type: "image/jpeg" });
+        formData.append(
+          "imagem",
+          blobImagem,
+          `${novoNome.toLowerCase().replace(/[ ]+/g, "-")}.jpeg`
+        );
+      }
+
+      const token = localStorage.getItem("accessToken");
+
+      const params = new URLSearchParams(window.location.search);
+      const idPrato = params.get("id");
+      const idCategoria = params.get("c");
+
+      let options = {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      };
+
+      console.log(idPrato);
+
+      function atualizarPrato() {
+        fetch(`http://127.0.0.1:8000/pratos/${idPrato}/`, options).then(
+          (response) => {
+            if (response.ok) {
+              window.location.href = `http://127.0.0.1:5500/admin/cardapio/categoria/?c=${idCategoria}`;
+            } else if (response.status === 403) {
+              alert("Você não tem permissão para adicionar novos itens.");
+            } else if (response.status === 401) {
+              refreshToken().then(() => {
+                const novoToken = localStorage.getItem("accessToken");
+                options.headers.Authorization = `Bearer ${novoToken}`;
+                atualizarPrato();
+              });
+            } else if (response.status === 400) {
+              console.log(response);
+              return response.json();
+            } else if (response.status === 415) {
+              alert.innerHTML = "Arquivo de mídia não suportado";
+            }
+          }
+        );
+      }
+
+      atualizarPrato();
     });
   }
 }

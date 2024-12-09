@@ -8,4 +8,14 @@ export default function initHasFileInput() {
       }
     });
   }
+
+  const updatePratoInput = document.getElementById("update-prato-imagem");
+
+  if (updatePratoInput) {
+    updatePratoInput.addEventListener("change", () => {
+      if (updatePratoInput.files && updatePratoInput.files.length > 0) {
+        updatePratoInput.classList.add("has-file");
+      }
+    });
+  }
 }

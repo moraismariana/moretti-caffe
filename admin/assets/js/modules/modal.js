@@ -13,6 +13,41 @@ export default function initModal() {
   const botaoFechar = document.querySelectorAll('[data-modal="fechar"]');
   const containerModal = document.querySelectorAll('[data-modal="container"]');
 
+  function atualizarValoresInputs(botao) {
+    /* Função para preencher inputs de Editar Categoria e Editar Prato com valores anteriores*/
+
+    if (document.body.id === "cardapio") {
+      const input = document.getElementById("update-categoria-nome");
+      input.value = botao.dataset.categoriaNome;
+    } else if (document.body.id === "categoria") {
+      const nome = document.getElementById("update-prato-nome");
+      const preco = document.getElementById("update-prato-preco");
+      const descricao = document.getElementById("update-prato-desc");
+
+      nome.value = botao.dataset.pratoNome;
+      preco.value = botao.dataset.pratoPreco;
+      descricao.value = botao.dataset.pratoDesc;
+    }
+  }
+
+  function alterarURL(botao) {
+    const typeOfButton = botao.dataset.modalType;
+
+    if (document.body.id === "cardapio") {
+      window.history.pushState(
+        null,
+        null,
+        `?c=${botao.dataset.categoriaId}&t=${typeOfButton}`
+      );
+    } else if (document.body.id === "categoria") {
+      window.history.pushState(
+        null,
+        null,
+        `?c=${botao.dataset.categoriaId}&id=${botao.dataset.pratoId}&t=${typeOfButton}`
+      );
+    }
+  }
+
   if (botaoAbrir && botaoFechar && containerModal) {
     botaoAbrir.forEach((botao) => {
       containerModal.forEach((container) => {
@@ -27,17 +62,10 @@ export default function initModal() {
               container.dataset.modalType != "create-prato"
             ) {
               // alterar URL
-              const typeOfButton = botao.dataset.modalType;
-
-              window.history.pushState(
-                null,
-                null,
-                `?c=${botao.dataset.categoriaId}&t=${typeOfButton}`
-              );
+              alterarURL(botao);
 
               // atualizar valor do input
-              const input = document.getElementById("update-categoria-nome");
-              input.value = botao.dataset.categoriaNome;
+              atualizarValoresInputs(botao);
             }
           });
         }

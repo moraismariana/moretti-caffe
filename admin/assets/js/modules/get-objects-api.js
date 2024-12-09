@@ -80,8 +80,8 @@ export default function initGetObjectsAPI() {
                         <p>${item.descricao}</p>
                     </div>
                     <div>
-                        <button data-prato-id="${item.id}" data-prato-nome="${item.nome}" data-modal="abrir" data-modal-type="update-prato"><img src="../../assets/img/edit.svg" alt="Editar prato"></button>
-                        <button data-prato-id="${item.id}" data-prato-nome="${item.nome}" data-modal="abrir" data-modal-type="delete-prato"><img src="../../assets/img/delete.svg" alt="Deletar prato"></button>
+                        <button data-categoria-id="${URLCategoria}" data-prato-id="${item.id}" data-prato-nome="${item.nome}" data-prato-preco="${item.preco}" data-prato-desc="${item.descricao}" data-prato-imagem="${item.imagem}" data-modal="abrir" data-modal-type="update-prato"><img src="../../assets/img/edit.svg" alt="Editar prato"></button>
+                        <button data-categoria-id="${URLCategoria}" data-prato-id="${item.id}" data-prato-nome="${item.nome}" data-modal="abrir" data-modal-type="delete-prato"><img src="../../assets/img/delete.svg" alt="Deletar prato"></button>
                     </div>`;
               container.appendChild(HTMLElement);
             }
