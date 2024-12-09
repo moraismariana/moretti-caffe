@@ -7,6 +7,7 @@ export default function initCreateObjectsAPI() {
   //   400 > bad request (já existe com item esse nome)
 
   const categoriaFormulario = document.getElementById("create-categoria");
+  const pratoFormulario = document.getElementById("create-prato");
 
   if (categoriaFormulario) {
     categoriaFormulario.addEventListener("submit", (event) => {
@@ -58,6 +59,70 @@ export default function initCreateObjectsAPI() {
           });
       }
       enviarNovaCategoria();
+    });
+  }
+
+  if (pratoFormulario) {
+    pratoFormulario.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const alert = document.querySelector("#create-prato .form-alert");
+
+      const nome = document.getElementById("create-prato-nome").value;
+      const preco = document.getElementById("create-prato-preco").value;
+      const descricao = document.getElementById("create-prato-desc").value;
+      const imagem = document.getElementById("create-prato-imagem").files[0];
+      const params = new URLSearchParams(window.location.search);
+      const categoria = +params.get("c");
+
+      const blobImagem = new Blob([imagem], { type: "image/jpeg" });
+
+      const formData = new FormData();
+      formData.append("nome", nome);
+      formData.append("preco", preco);
+      formData.append("descricao", descricao);
+      formData.append(
+        "imagem",
+        blobImagem,
+        `${nome.toLowerCase().replace(/[ ]+/g, "-")}.jpeg`
+      );
+      formData.append("categoria", categoria);
+
+      const token = localStorage.getItem("accessToken");
+
+      const options = {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      };
+
+      for (const [key, value] of formData.entries()) {
+        console.log(key, value);
+      }
+
+      function enviarNovoPrato() {
+        fetch("http://127.0.0.1:8000/pratos/", options).then((response) => {
+          if (response.ok) {
+            window.location.href = `http://127.0.0.1:5500/admin/cardapio/categoria/?c=${categoria}`;
+          } else if (response.status === 403) {
+            alert("Você não tem permissão para adicionar novos itens.");
+          } else if (response.status === 401) {
+            refreshToken().then(() => {
+              const novoToken = localStorage.getItem("accessToken");
+              options.headers.Authorization = `Bearer ${novoToken}`;
+              enviarNovoPrato();
+            });
+          } else if (response.status === 400) {
+            console.log(response);
+            return response.json();
+          } else if (response.status === 415) {
+            alert.innerHTML = "Arquivo de mídia não suportado";
+          }
+        });
+      }
+      enviarNovoPrato();
     });
   }
 }

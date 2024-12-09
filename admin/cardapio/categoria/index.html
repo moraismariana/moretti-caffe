@@ -31,7 +31,7 @@
     <div class="categoria-conteudo" data-list-size data-list-size-tam="2">
         <article class="categoria-intro">
             <h1>Edição de Cardápio</h1>
-            <h2 data-get-api="categoria-titulo">Categoria</h2>
+            <h2 data-get-api="categoria-titulo"></h2>
         </article>
         <section class="categoria-nav">
             <ul data-get-api-container="categoria">
@@ -77,22 +77,24 @@
             <h2>Novo prato</h2>
             <form id="create-prato" action="">
                 <label for="create-prato-nome">Nome</label>
-                <input type="text" for="create-prato-nome" id="create-prato-nome">
+                <input type="text" for="create-prato-nome" id="create-prato-nome" required>
 
                 <div class="form-flex-inputs">
                     <div>
                         <label for="create-prato-preco">Preço</label>
-                        <input type="text" for="create-prato-preco" id="create-prato-preco">
+                        <input type="text" for="create-prato-preco" id="create-prato-preco" required>
                     </div>
 
                     <div>
                         <label for="create-prato-imagem">Imagem</label>
-                        <input id="create-prato-imagem" class="imagem-input" type="file" accept="image/png, image/jpeg, image/webp">
+                        <input id="create-prato-imagem" class="imagem-input" type="file" accept="image/png, image/jpeg, image/webp" required>
                     </div>
                 </div>
 
                 <label for="create-prato-desc">Descrição</label>
-                <textarea name="create-prato-desc" id="create-prato-desc"></textarea>
+                <textarea name="create-prato-desc" id="create-prato-desc" required></textarea>
+
+                <p class="form-alert"></p>
 
                 <div class="api-buttons">
                     <button data-modal="fechar" data-modal-type="create-prato" class="cancel-button">Cancelar</button>

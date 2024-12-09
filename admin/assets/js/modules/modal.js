@@ -22,7 +22,10 @@ export default function initModal() {
             event.preventDefault();
             container.classList.add("ativo");
 
-            if (container.dataset.modalType != "create-categoria") {
+            if (
+              container.dataset.modalType != "create-categoria" &&
+              container.dataset.modalType != "create-prato"
+            ) {
               // alterar URL
               const typeOfButton = botao.dataset.modalType;
 
@@ -47,7 +50,10 @@ export default function initModal() {
           botao.addEventListener("click", (event) => {
             event.preventDefault();
             container.classList.remove("ativo");
-            if (container.dataset.modalType != "create-categoria") {
+            if (
+              container.dataset.modalType != "create-categoria" &&
+              container.dataset.modalType != "create-prato"
+            ) {
               window.history.back();
             }
           });
@@ -59,7 +65,10 @@ export default function initModal() {
       container.addEventListener("mousedown", (event) => {
         if (event.target === container) {
           container.classList.remove("ativo");
-          if (container.dataset.modalType != "create-categoria") {
+          if (
+            container.dataset.modalType != "create-categoria" &&
+            container.dataset.modalType != "create-prato"
+          ) {
             window.history.back();
           }
         }

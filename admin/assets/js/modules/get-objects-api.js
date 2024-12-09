@@ -55,8 +55,12 @@ export default function initGetObjectsAPI() {
           );
         });
     } else if (container.dataset.getApiContainer === "categoria") {
-      let titulo = document.querySelector('[data-get-api="categoria-titulo"]');
-      titulo.innerHTML = sessionStorage.categoria;
+      if (sessionStorage.categoria) {
+        let titulo = document.querySelector(
+          '[data-get-api="categoria-titulo"]'
+        );
+        titulo.innerHTML = sessionStorage.categoria;
+      }
 
       const params = new URLSearchParams(window.location.search);
       const URLCategoria = +params.get("c");
@@ -64,7 +68,6 @@ export default function initGetObjectsAPI() {
       fetch("http://127.0.0.1:8000/pratos/")
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           data.forEach((item) => {
             if (item.categoria === URLCategoria) {
               let HTMLElement = document.createElement("li");
@@ -77,8 +80,8 @@ export default function initGetObjectsAPI() {
                         <p>${item.descricao}</p>
                     </div>
                     <div>
-                        <button data-modal="abrir" data-modal-type="update-prato"><img src="../../assets/img/edit.svg" alt="Editar prato"></button>
-                        <button data-modal="abrir" data-modal-type="delete-prato"><img src="../../assets/img/delete.svg" alt="Deletar prato"></button>
+                        <button data-prato-id="${item.id}" data-prato-nome="${item.nome}" data-modal="abrir" data-modal-type="update-prato"><img src="../../assets/img/edit.svg" alt="Editar prato"></button>
+                        <button data-prato-id="${item.id}" data-prato-nome="${item.nome}" data-modal="abrir" data-modal-type="delete-prato"><img src="../../assets/img/delete.svg" alt="Deletar prato"></button>
                     </div>`;
               container.appendChild(HTMLElement);
             }

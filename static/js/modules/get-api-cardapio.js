@@ -40,8 +40,13 @@ export default function initGetAPICardapio() {
         });
     } else if (container.dataset.getApiContainer === "categoria") {
       initScrollTo();
-      let titulo = document.querySelector('[data-get-api="categoria-titulo"]');
-      titulo.innerHTML = sessionStorage.categoria;
+
+      if (sessionStorage.categoria) {
+        let titulo = document.querySelector(
+          '[data-get-api="categoria-titulo"]'
+        );
+        titulo.innerHTML = sessionStorage.categoria;
+      }
 
       const params = new URLSearchParams(window.location.search);
       const URLCategoria = +params.get("c");
