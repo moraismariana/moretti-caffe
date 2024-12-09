@@ -6,6 +6,7 @@ import initGetObjectsAPI from "./modules/get-objects-api.js";
 import initCreateObjectsAPI from "./modules/create-objects-api.js";
 import initUpdateObjectsAPI from "./modules/update-objects-api.js";
 import initDeleteObjectsAPI from "./modules/delete-objects-api.js";
+import initHasFileInput from "./modules/has-file-input.js";
 
 initGetObjectsAPI();
 
@@ -16,3 +17,4 @@ initListSizeStyle();
 initIsLogged();
 initLogin();
 initLogout();
+initHasFileInput();

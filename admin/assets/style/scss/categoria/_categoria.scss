@@ -61,6 +61,7 @@
 
     div:nth-of-type(1) {
       padding: $s5 0 $s5 $s6;
+      margin-right: auto;
       h3 {
         @include text-1;
         margin-bottom: $s2;
