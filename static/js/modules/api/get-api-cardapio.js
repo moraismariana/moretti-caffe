@@ -1,5 +1,5 @@
-import initScrollEffect from "./scroll-effect.js";
-import initScrollTo from "./scroll-to.js";
+import initScrollEffect from "../estilizacao/scroll-effect.js";
+import initScrollTo from "../estilizacao/scroll-to.js";
 
 export default function initGetAPICardapio() {
   /*

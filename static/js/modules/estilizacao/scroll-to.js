@@ -10,7 +10,6 @@ export default function initScrollTo() {
       sessionStorage.scrollTo
     ) {
       const cardapioCategorias = document.querySelector(".cardapio-categorias");
-      console.log(cardapioCategorias.offsetTop);
       window.scrollTo({
         top: cardapioCategorias.offsetTop,
         behavior: "smooth",

@@ -1,9 +1,11 @@
-import initMenuMobile from "./modules/menu-mobile.js";
-import initLogoMenu from "./modules/logo-menu.js";
-import initScrollEffect from "./modules/scroll-effect.js";
-import initGetAPICardapio from "./modules/get-api-cardapio.js";
+import initMenuMobile from "./modules/estilizacao/menu-mobile.js";
+import initLogoMenu from "./modules/estilizacao/logo-menu.js";
+import initScrollEffect from "./modules/estilizacao/scroll-effect.js";
+import initGetAPICardapio from "./modules/api/get-api-cardapio.js";
+import initEstatisticas from "./modules/api/estatisticas.js";
 
 initMenuMobile();
 initLogoMenu();
 initScrollEffect();
 initGetAPICardapio();
+initEstatisticas();
