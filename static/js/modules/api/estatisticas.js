@@ -30,6 +30,8 @@ function acessoEmCadaPagina() {
     }
   }
 
+  console.log(window.location.pathname);
+
   switch (window.location.pathname) {
     case "/" || "/moretti-caffe/":
       sessionStorage.setItem("acessoPaginaInicial", true);
