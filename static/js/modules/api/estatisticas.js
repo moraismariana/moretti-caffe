@@ -30,8 +30,6 @@ function acessoEmCadaPagina() {
     }
   }
 
-  console.log(window.location.pathname);
-
   switch (window.location.pathname) {
     case "/":
     case "/moretti-caffe/":
@@ -99,7 +97,7 @@ if (window.innerWidth < 768) {
   document.addEventListener("visibilitychange", () => {
     if (!sessionStorage.dadosEnviadosAPI) {
       if (document.visibilityState === "hidden") {
-        console.log("janela diminuída");
+        enviarDadosAPI(dados);
         sessionStorage.setItem("dadosEnviadosAPI", true);
       }
     }
@@ -110,7 +108,7 @@ if (window.innerWidth < 768) {
       if (navType === "reload" || navType === "navigate") {
         return;
       }
-      console.log("beforeunload ativado");
+      enviarDadosAPI(dados);
     }
   });
 } else {
@@ -119,6 +117,6 @@ if (window.innerWidth < 768) {
     if (navType === "reload" || navType === "navigate") {
       return;
     }
-    console.log("beforeunload ativado");
+    enviarDadosAPI(dados);
   });
 }
