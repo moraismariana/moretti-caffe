@@ -15,33 +15,33 @@ Sempre que o usuário tocar em um link externo durante a sessão, armazenar no s
 
 function acessoEmCadaPagina() {
   if (!sessionStorage.acessoPaginaInicial) {
-    sessionStorage.setItem("acessoPaginaInicial", 0);
+    sessionStorage.setItem("acessoPaginaInicial", false);
   }
   if (!sessionStorage.acessoSobre) {
-    sessionStorage.setItem("acessoSobre", 0);
+    sessionStorage.setItem("acessoSobre", false);
   }
   if (!sessionStorage.acessoCardapio) {
-    sessionStorage.setItem("acessoCardapio", 0);
+    sessionStorage.setItem("acessoCardapio", false);
   }
 
   if (window.location.pathname === "/") {
     if (!sessionStorage.acessoPaginaInicial) {
-      sessionStorage.setItem("acessoPaginaInicial", 1);
+      sessionStorage.setItem("acessoPaginaInicial", true);
     }
   }
 
   switch (window.location.pathname) {
     case "/":
-      sessionStorage.setItem("acessoPaginaInicial", 1);
+      sessionStorage.setItem("acessoPaginaInicial", true);
       break;
     case "/sobre/":
-      sessionStorage.setItem("acessoSobre", 1);
+      sessionStorage.setItem("acessoSobre", true);
       break;
     case "/cardapio/":
-      sessionStorage.setItem("acessoCardapio", 1);
+      sessionStorage.setItem("acessoCardapio", true);
       break;
     case "/cardapio/categoria/":
-      sessionStorage.setItem("acessoCardapio", 1);
+      sessionStorage.setItem("acessoCardapio", true);
       break;
   }
 }
@@ -51,16 +51,68 @@ function toqueEmLinkExterno() {
     '[data-link-externo="contato"]'
   );
   if (!sessionStorage.toqueLinkContato) {
-    sessionStorage.setItem("toqueLinkContato", 0);
+    sessionStorage.setItem("toqueLinkContato", false);
   }
   if (linksContato) {
     linksContato.forEach((link) => {
       link.addEventListener("click", () => {
-        sessionStorage.setItem("toqueLinkContato", 1);
+        sessionStorage.setItem("toqueLinkContato", true);
       });
     });
   }
 }
 
+function revisita() {
+  if (!localStorage.revisita) {
+    localStorage.setItem("revisita", false);
+  }
+}
+
+function enviarDadosAPI(dados) {
+  const url = "http://127.0.0.1:8000/acessos/";
+  navigator.sendBeacon(url, JSON.stringify(dados));
+}
+
+function isTruthy(valor) {
+  return valor === "true" ? true : false;
+}
+
 acessoEmCadaPagina();
 toqueEmLinkExterno();
+revisita();
+
+const dados = {
+  revisita: isTruthy(localStorage.revisita),
+  acesso_cardapio: isTruthy(sessionStorage.acessoCardapio),
+  acesso_pagina_inicial: isTruthy(sessionStorage.acessoPaginaInicial),
+  acesso_sobre: isTruthy(sessionStorage.acessoSobre),
+  toque_contato: isTruthy(sessionStorage.toqueLinkContato),
+};
+
+if (window.innerWidth < 768) {
+  document.addEventListener("visibilitychange", () => {
+    if (!sessionStorage.dadosEnviadosAPI) {
+      if (document.visibilityState === "hidden") {
+        console.log("janela diminuída");
+        sessionStorage.setItem("dadosEnviadosAPI", true);
+      }
+    }
+  });
+  window.addEventListener("beforeunload", () => {
+    if (!sessionStorage.dadosEnviadosAPI) {
+      const navType = performance.getEntriesByType("navigation")[0].type;
+      if (navType === "reload" || navType === "navigate") {
+        return;
+      }
+      console.log("beforeunload ativado");
+    }
+  });
+} else {
+  window.addEventListener("beforeunload", () => {
+    const navType = performance.getEntriesByType("navigation")[0].type;
+    if (navType === "reload" || navType === "navigate") {
+      return;
+    }
+    console.log("beforeunload ativado");
+  });
+}
