@@ -31,16 +31,16 @@ function acessoEmCadaPagina() {
   }
 
   switch (window.location.pathname) {
-    case "/":
+    case "/" || "/moretti-caffe/":
       sessionStorage.setItem("acessoPaginaInicial", true);
       break;
-    case "/sobre/":
+    case "/sobre/" || "/moretti-caffe/sobre/":
       sessionStorage.setItem("acessoSobre", true);
       break;
-    case "/cardapio/":
+    case "/cardapio/" || "/moretti-caffe/cardapio/":
       sessionStorage.setItem("acessoCardapio", true);
       break;
-    case "/cardapio/categoria/":
+    case "/cardapio/categoria/" || "/moretti-caffe/categoria/":
       sessionStorage.setItem("acessoCardapio", true);
       break;
   }
