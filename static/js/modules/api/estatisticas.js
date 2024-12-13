@@ -13,61 +13,64 @@ export default function initEstatisticas() {
   Sempre que o usuário tocar em um link externo durante a sessão, armazenar no sessionStorage o valor 1 indicando que tocou naquele link. Caso toque no link novamente, continuará sendo contabilizado 1 única vez.
   */
 
-  sessionStorage.setItem("teste", "teste");
-  console.log(sessionStorage);
+  function resetarValoresLocalStorage() {
+    /* Caso o link anterior da navegação seja o próprio site, não faz nada.
+    Porém, caso tenha vindo de outro site, a função reseta os valores do localStorage referente às estatísticas, exceto o de revisita. */
+    if (
+      document.referrer.startsWith("http://127.0.0.1:5500") ||
+      document.referrer.startsWith(
+        "https://moraismariana.github.io/moretti-caffe/"
+      )
+    ) {
+      return;
+    } else {
+      localStorage.setItem("acessoPaginaInicial", false);
+      localStorage.setItem("acessoSobre", false);
+      localStorage.setItem("acessoCardapio", false);
+      localStorage.setItem("toqueLinkContato", false);
+      localStorage.setItem("dadosEnviadosAPI", false);
+    }
+  }
+
+  resetarValoresLocalStorage();
 
   function acessoEmCadaPagina() {
-    console.log(sessionStorage);
-    if (!sessionStorage.acessoPaginaInicial) {
-      sessionStorage.setItem("acessoPaginaInicial", false);
-    }
-    if (!sessionStorage.acessoSobre) {
-      sessionStorage.setItem("acessoSobre", false);
-    }
-    if (!sessionStorage.acessoCardapio) {
-      sessionStorage.setItem("acessoCardapio", false);
-    }
-    console.log(sessionStorage);
-
     switch (window.location.pathname) {
       case "/":
       case "/moretti-caffe/":
-        sessionStorage.setItem("acessoPaginaInicial", true);
+        localStorage.setItem("acessoPaginaInicial", true);
         break;
       case "/sobre/":
       case "/moretti-caffe/sobre/":
-        sessionStorage.setItem("acessoSobre", true);
+        localStorage.setItem("acessoSobre", true);
         break;
       case "/cardapio/":
       case "/moretti-caffe/cardapio/":
-        sessionStorage.setItem("acessoCardapio", true);
+        localStorage.setItem("acessoCardapio", true);
         break;
       case "/cardapio/categoria/":
       case "/moretti-caffe/categoria/":
-        sessionStorage.setItem("acessoCardapio", true);
+        localStorage.setItem("acessoCardapio", true);
         break;
     }
   }
-  console.log(sessionStorage);
 
   acessoEmCadaPagina();
-  console.log(sessionStorage);
 
   function toqueEmLinkExterno() {
     const linksContato = document.querySelectorAll(
       '[data-link-externo="contato"]'
     );
-    if (!sessionStorage.toqueLinkContato) {
-      sessionStorage.setItem("toqueLinkContato", false);
-    }
     if (linksContato) {
       linksContato.forEach((link) => {
         link.addEventListener("click", () => {
-          sessionStorage.setItem("toqueLinkContato", true);
+          localStorage.setItem("toqueLinkContato", true);
         });
       });
     }
   }
+
+  toqueEmLinkExterno();
 
   function revisita() {
     if (!localStorage.revisita) {
@@ -75,52 +78,49 @@ export default function initEstatisticas() {
     }
   }
 
+  revisita();
+
   function enviarDadosAPI(dados) {
     const url = "http://127.0.0.1:8000/acessos/";
     navigator.sendBeacon(url, JSON.stringify(dados));
     localStorage.setItem("revisita", true);
+    localStorage.setItem("dadosEnviadosAPI", true);
   }
 
-  function isTruthy(valor) {
-    return valor === "true" ? true : false;
-  }
+  function preparacaoDosDados() {
+    function isTruthy(valor) {
+      return valor === "true" ? true : false;
+    }
 
-  toqueEmLinkExterno();
-  revisita();
+    const dados = {
+      revisita: isTruthy(localStorage.revisita),
+      acesso_cardapio: isTruthy(localStorage.acessoCardapio),
+      acesso_pagina_inicial: isTruthy(localStorage.acessoPaginaInicial),
+      acesso_sobre: isTruthy(localStorage.acessoSobre),
+      toque_contato: isTruthy(localStorage.toqueLinkContato),
+    };
 
-  const dados = {
-    revisita: isTruthy(localStorage.revisita),
-    acesso_cardapio: isTruthy(sessionStorage.acessoCardapio),
-    acesso_pagina_inicial: isTruthy(sessionStorage.acessoPaginaInicial),
-    acesso_sobre: isTruthy(sessionStorage.acessoSobre),
-    toque_contato: isTruthy(sessionStorage.toqueLinkContato),
-  };
-
-  if (window.innerWidth < 768) {
-    document.addEventListener("visibilitychange", () => {
-      if (!sessionStorage.dadosEnviadosAPI) {
+    if (window.innerWidth < 768) {
+      /* Envio de dados em dispositivos móveis */
+      document.addEventListener("visibilitychange", () => {
         if (document.visibilityState === "hidden") {
-          enviarDadosAPI(dados);
-          sessionStorage.setItem("dadosEnviadosAPI", true);
+          if (localStorage.dadosEnviadosAPI === "false") {
+            enviarDadosAPI(dados);
+          }
         }
-      }
-    });
-    window.addEventListener("beforeunload", () => {
-      if (!sessionStorage.dadosEnviadosAPI) {
-        const navType = performance.getEntriesByType("navigation")[0].type;
-        if (navType === "reload" || navType === "navigate") {
-          return;
+      });
+    } else {
+      /* Envio de dados em desktops */
+
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "hidden") {
+          window.addEventListener("beforeunload", () => {
+            enviarDadosAPI(dados);
+          });
         }
-        enviarDadosAPI(dados);
-      }
-    });
-  } else {
-    window.addEventListener("beforeunload", () => {
-      const navType = performance.getEntriesByType("navigation")[0].type;
-      if (navType === "reload" || navType === "navigate") {
-        return;
-      }
-      enviarDadosAPI(dados);
-    });
+      });
+    }
   }
+
+  preparacaoDosDados();
 }
