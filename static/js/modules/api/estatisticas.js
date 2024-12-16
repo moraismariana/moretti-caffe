@@ -87,6 +87,36 @@ export default function initEstatisticas() {
     localStorage.setItem("dadosEnviadosAPI", true);
   }
 
+  function enviarDadosMobile(dados) {
+    /* Essa estratégia envia dados ao ocultar a aba (seja ocultando no navegador ou mudando de aplicativo). Ainda precisa ser testada, pois em desktop essa estratégia é limitada */
+    let timeout;
+    document.addEventListener("visibilitychange", () => {
+      if (
+        document.visibilityState === "hidden" &&
+        localStorage.dadosEnviadosAPI === "false"
+      ) {
+        timeout = setTimeout(() => {
+          enviarDadosAPI(dados);
+        }, 500);
+      } else if (document.visibilityState === "visible") {
+        clearTimeout(timeout);
+      }
+    });
+  }
+
+  function enviarDadosDesktop(dados) {
+    /* Essa estratégia envia dados ao fechar a aba, janela ou navegador. Mas também envia 1 vez ao fazer refresh da página. Isso significa que os dados de navegação não são exatos, mas muito próximos. */
+
+    if (localStorage.dadosEnviadosAPI === "false") {
+      window.addEventListener("pagehide", (event) => {
+        if (!event.persisted) {
+          console.log("ativado");
+          enviarDadosAPI(dados);
+        }
+      });
+    }
+  }
+
   function preparacaoDosDados() {
     function isTruthy(valor) {
       return valor === "true" ? true : false;
@@ -101,33 +131,9 @@ export default function initEstatisticas() {
     };
 
     if (window.innerWidth < 768) {
-      /* Envio de dados em dispositivos móveis */
-      let timeout;
-      document.addEventListener("visibilitychange", () => {
-        if (
-          document.visibilityState === "hidden" &&
-          localStorage.dadosEnviadosAPI === "false"
-        ) {
-          window.addEventListener("beforeunload", () => {
-            enviarDadosAPI(dados);
-          });
-          timeout = setTimeout(() => {
-            enviarDadosAPI(dados);
-          }, 500);
-        } else if (document.visibilityState === "visible") {
-          clearTimeout(timeout);
-        }
-      });
+      enviarDadosMobile(dados);
     } else {
-      /* Envio de dados em desktops */
-
-      document.addEventListener("visibilitychange", () => {
-        if (document.visibilityState === "hidden") {
-          window.addEventListener("beforeunload", () => {
-            enviarDadosAPI(dados);
-          });
-        }
-      });
+      enviarDadosDesktop(dados);
     }
   }
 
