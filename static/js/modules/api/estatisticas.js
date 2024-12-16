@@ -105,7 +105,8 @@ export default function initEstatisticas() {
       document.addEventListener("visibilitychange", () => {
         if (document.visibilityState === "hidden") {
           if (localStorage.dadosEnviadosAPI === "false") {
-            enviarDadosAPI(dados);
+            console.log(document.visibilityState);
+            localStorage.setItem("dadosEnviadosAPI", true);
           }
         }
       });
