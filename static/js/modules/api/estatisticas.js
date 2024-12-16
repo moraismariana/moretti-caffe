@@ -102,12 +102,20 @@ export default function initEstatisticas() {
 
     if (window.innerWidth < 768) {
       /* Envio de dados em dispositivos móveis */
+      let timeout;
       document.addEventListener("visibilitychange", () => {
-        if (document.visibilityState === "hidden") {
-          if (localStorage.dadosEnviadosAPI === "false") {
-            console.log(document.visibilityState);
-            localStorage.setItem("dadosEnviadosAPI", true);
-          }
+        if (
+          document.visibilityState === "hidden" &&
+          localStorage.dadosEnviadosAPI === "false"
+        ) {
+          window.addEventListener("beforeunload", () => {
+            enviarDadosAPI(dados);
+          });
+          timeout = setTimeout(() => {
+            enviarDadosAPI(dados);
+          }, 500);
+        } else if (document.visibilityState === "visible") {
+          clearTimeout(timeout);
         }
       });
     } else {
