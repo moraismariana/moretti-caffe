@@ -114,9 +114,9 @@
       &.has-file {
         box-shadow: none;
         &::file-selector-button {
-          background-color: $w3;
-          color: $c2;
-          font-weight: 500;
+          box-shadow: none;
+          color: $w1;
+          background-color: $c3;
         }
       }
     }

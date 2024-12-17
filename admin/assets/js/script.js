@@ -7,6 +7,7 @@ import initCreateObjectsAPI from "./modules/create-objects-api.js";
 import initUpdateObjectsAPI from "./modules/update-objects-api.js";
 import initDeleteObjectsAPI from "./modules/delete-objects-api.js";
 import initHasFileInput from "./modules/has-file-input.js";
+import initGetEstatisticas from "./modules/get-estatisticas.js";
 
 initGetObjectsAPI();
 
@@ -18,3 +19,4 @@ initIsLogged();
 initLogin();
 initLogout();
 initHasFileInput();
+initGetEstatisticas();

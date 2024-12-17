@@ -29,12 +29,33 @@
     }
   }
   li {
-    @include button;
+    button {
+      @include button;
+      &.active {
+        box-shadow: none;
+        @include button-2;
+        // font-weight: 500;
+        background-color: $c3;
+      }
+    }
+  }
+}
+
+.estatisticas-contagem-grid {
+  @include container;
+  max-width: 1000px;
+  justify-content: center;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $s7;
+  @include screen(mobile) {
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 }
 
 .estatisticas-contagem {
-  @include container;
   margin-bottom: $s8;
   text-align: center;
   h2 {
@@ -46,8 +67,7 @@
   }
   p {
     @include text-1;
-    span {
-      display: block;
+    &:nth-of-type(1) {
       font-size: px-rem(60px);
     }
   }

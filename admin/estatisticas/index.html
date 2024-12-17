@@ -29,31 +29,39 @@
     </article>
     <section class="estatisticas-opcoes">
         <ul>
-            <li>geral</li>
-            <li>últimos 30 dias</li>
-            <li>últimos 15 dias</li>
-            <li>últimos 7 dias</li>
-            <li>hoje</li>
+            <li><button data-filter-button="geral">geral</button></li>
+            <li><button class="active" data-filter-button="30">últimos 30 dias</button></li>
+            <li><button data-filter-button="15">últimos 15 dias</button></li>
+            <li><button data-filter-button="7">últimos 7 dias</button></li>
+            <li><button data-filter-button="1">hoje</button></li>
         </ul>
     </section>
-    <section class="estatisticas-contagem">
-        <h2>Contagem de visitantes</h2>
-        <p><span>171</span>visitantes nos últimos 7 dias</p>
-    </section>
+    <div class="estatisticas-contagem-grid">
+        <section class="estatisticas-contagem">
+            <h2>Acessos</h2>
+            <p data-filter="dados"></p>
+            <p data-filter="dados"></p>
+        </section>
+        <section class="estatisticas-contagem">
+            <h2>Revisitas</h2>
+            <p data-filter="dados"></p>
+            <p data-filter="dados"></p>
+        </section>
+    </div>
     <section class="estatisticas-paginas">
-        <h2>Detalhes das páginas</h2>
+        <h2>Acessos a páginas</h2>
         <ul>
             <li>
                 <p>Página inicial</p>
-                <p>20 acessos</p>
+                <p data-filter="dados"></p>
             </li>
             <li>
                 <p>Cardápio</p>
-                <p>141 acessos</p>
+                <p data-filter="dados"></p>
             </li>
             <li>
                 <p>Sobre</p>
-                <p>10 acessos</p>
+                <p data-filter="dados"></p>
             </li>
         </ul>
     </section>
@@ -62,7 +70,7 @@
         <ul>
             <li>
                 <p>Link de contato</p>
-                <p>20 toques</p>
+                <p data-filter="dados"></p>
             </li>
         </ul>
     </section>
