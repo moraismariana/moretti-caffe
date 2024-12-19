@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edição de conteúdo</title>
+
+    <link rel="stylesheet" href="../../assets/style/css/style.css">
+    <link rel="stylesheet" href="../../../static/style/css/style.css">
+
+    <!-- tipografias -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap&family=Afacad&family=Dancing+Script:wght@500&family=Federo&display=swap" rel="stylesheet">
+
+    <!-- <script>document.documentElement.className += " js";</script> -->
+</head>
+
+<body id="cms">
+    <div class="cms-header">
+        <div class="cms-header-content">
+            <div>
+                <a href="../../">
+                    <img src="../../assets/img/left-arrow.svg" alt="Voltar para o painel de administração">
+                </a>
+                <p>Você está no modo de edição de conteúdo.</p>
+            </div>
+            <button>Salvar página</button>
+        </div>
+    </div>
+
+    <div class="cms-content">
+        <header class="header">
+            <script>
+                window.LOGO_URL = '../../../static/img/svg/';
+            </script>
+            <ul>
+                <li><a href="../"><img data-logo-menu src="../../../static/img/svg/Logo.svg" alt="Moretti Caffè"></a></li>
+                <div>
+                    <li><a href="../">Início</a></li>
+                    <li><a href="../sobre/">Sobre o Moretti</a></li>
+                </div>
+                <div>
+                    <li><a href="../cardapio/">Cardápio</a></li>
+                    <li><a href="./" data-link-externo="contato">Faça um pedido</a></li>
+                </div>
+                <button data-menu-mobile-botao>
+                    <div></div>
+                </button>
+            </ul>
+        </header>
+        <div class="menu-mobile">
+            <ul>
+                <li><a href="../">Início</a></li>
+                <li><a href="../sobre/">Sobre o Moretti</a></li>
+                <li><a href="../cardapio/">Cardápio</a></li>
+                <li><a href="./" data-link-externo="contato">Faça um pedido</a></li>
+            </ul>
+        </div>
+
+        <article class="sobre-introducao proximo-elemento">
+            <div class="sobre-introducao-bg ">
+                <div class="sobre-introducao-text">
+                    <h1 data-scroll-element="to-right">Sobre o Moretti</h1>
+                    <p data-scroll-element="to-right">O melhor da culinária italiana.</p>
+                </div>
+            </div>
+        </article>
+        <section class="sobre-info">
+            <p data-scroll-element="to-right">O Moretti Caffè nasceu do sonho de Alessandro Moretti, um cozinheiro apaixonado pela culinária italiana e suas raízes familiares. Crescendo em uma pequena vila na Toscana, Alessandro foi inspirado pelas refeições feitas com simplicidade e amor na cozinha de sua nonna, onde cada prato contava uma história e reunia a família ao redor da mesa.</p>
+            <p data-scroll-element="to-right">Após anos viajando pela Itália e aprimorando suas habilidades em renomadas escolas de culinária, Alessandro decidiu trazer a essência dessa experiência para o Brasil. Sua visão era criar um lugar onde as pessoas pudessem sentir o mesmo acolhimento e autenticidade que ele viveu em sua infância – com receitas artesanais que respeitam os ingredientes e honram a tradição. Assim nasceu o Moretti Caffè, um restaurante que combina sabores italianos autênticos com um toque pessoal e acolhedor.</p>
+        </section>
+        <section class="sobre-fundador">
+            <img data-scroll-element="to-right" src="../../../static/img/sobre/fundador.jpg" alt="Fundador do Moretti Ceffè">
+            <p data-scroll-element="to-right">"Para mim, a culinária sempre foi mais do que apenas comida – é um elo entre as pessoas, uma forma de expressar cuidado e de compartilhar histórias. No Moretti Caffè, cada prato e cada xícara de café carrega esse propósito. Aqui, você não encontrará apenas receitas, mas memórias e momentos que trazem a verdadeira alma da Itália. É uma honra ver nossos clientes sorrirem e sentirem-se em casa, exatamente como minha família fazia ao redor da mesa."</p>
+            <p data-scroll-element="to-right">— Alessandro Moretti, fundador e chef do Moretti Caffè</p>
+        </section>
+        <footer class="footer">
+            <p>Desenvolvido por Mariana Morais © 2024.</p>
+        </footer>
+    </div>
+
+    <script type="module" src="../../../static/js/script.js"></script>
+</body>
+
+</html>

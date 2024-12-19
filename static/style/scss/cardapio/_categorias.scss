@@ -1,6 +1,9 @@
 .cardapio-categorias {
   @include container;
   @include mbottom-1;
+  #cms & {
+    display: none;
+  }
   ul {
     li {
       position: relative;

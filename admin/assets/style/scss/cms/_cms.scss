@@ -1,17 +1,18 @@
-#cms {
-  background-color: $c1;
-}
+// #cms {
+//   background-color: $c1;
+// }
 
 .cms-header {
   box-sizing: border-box;
-  max-width: 1300px;
+  max-width: 1400px;
   padding: 0;
-  position: absolute;
+  position: relative;
   width: calc(100% - 40px);
   left: calc(50% - 20px);
   transform: translateX(-50%);
   background-color: $w2;
-  @include border;
+  // @include border;
+  border-radius: 50px;
   margin: $s4;
 }
 
@@ -27,6 +28,7 @@
     align-items: center;
     gap: $s4;
     & > p {
+      color: $c2;
       @include text-2;
       cursor: default;
       @include screen(mobile) {

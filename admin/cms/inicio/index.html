@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edição de conteúdo</title>
+
+    <link rel="stylesheet" href="../../assets/style/css/style.css">
+    <link rel="stylesheet" href="../../../static/style/css/style.css">
+
+    <!-- tipografias -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap&family=Afacad&family=Dancing+Script:wght@500&family=Federo&display=swap" rel="stylesheet">
+
+    <!-- <script>document.documentElement.className += " js";</script> -->
+</head>
+
+<body id="cms">
+    <div class="cms-header">
+        <div class="cms-header-content">
+            <div>
+                <a href="../../">
+                    <img src="../../assets/img/left-arrow.svg" alt="Voltar para o painel de administração">
+                </a>
+                <p>Você está no modo de edição de conteúdo.</p>
+            </div>
+            <button>Salvar página</button>
+        </div>
+    </div>
+
+    <div class="cms-content">
+        <header class="header">
+            <script>
+                window.LOGO_URL = '../../../static/img/svg/';
+            </script>
+            <ul>
+                <li><a href="./"><img data-logo-menu src="../../../static/img/svg/Logo.svg" alt="Moretti Caffè"></a></li>
+                <div>
+                    <li><a href="./">Início</a></li>
+                    <li><a href="../sobre/">Sobre o Moretti</a></li>
+                </div>
+                <div>
+                    <li><a href="../cardapio/">Cardápio</a></li>
+                    <li><a href="./" data-link-externo="contato">Faça um pedido</a></li>
+                </div>
+                <button data-menu-mobile-botao>
+                    <div></div>
+                </button>
+            </ul>
+        </header>
+        <div class="menu-mobile">
+            <ul>
+                <li><a href="./">Início</a></li>
+                <li><a href="../sobre/">Sobre o Moretti</a></li>
+                <li><a href="../cardapio/">Cardápio</a></li>
+                <li><a href="./" data-link-externo="contato">Faça um pedido</a></li>
+            </ul>
+        </div>
+
+        <article class="inicio-introducao proximo-elemento">
+            <div class="inicio-introducao-bg">
+                <div class="inicio-introducao-text">
+                    <h1 data-scroll-element="to-right">Moretti Caffè</h1>
+                    <p data-scroll-element="to-right">Tradição italiana em cada sabor.</h2>
+                </div>
+            </div>
+        </article>
+        <section class="inicio-cardapio" data-scroll-element="to-right">
+            <h2>Confira o nosso cardápio</h2>
+            <a href="./cardapio/">Ver agora</a>
+        </section>
+        <section class="inicio-historia" data-scroll-element="to-left">
+            <h2>Conheça a nossa história</h2>
+            <a href="./sobre/">Ver agora</a>
+        </section>
+        <section class="inicio-pedido" data-scroll-element="to-right">
+            <div class="inicio-pedido-bg">
+                <h2>Faça um pedido</h2>
+                <a href="./">Pedir agora</a>
+            </div>
+        </section>
+        <section class="inicio-localizacao">
+            <h2>Localização</h2>
+            <p>Rua Paraíba, 99, Savassi - Belo Horizonte - 30112000</p>
+            <a href="./">Ver no Maps</a>
+        </section>
+        <footer class="footer">
+            <p>Desenvolvido por Mariana Morais © 2024.</p>
+        </footer>
+    </div>
+
+    <script type="module" src="../../../static/js/script.js"></script>
+</body>
+
+</html>

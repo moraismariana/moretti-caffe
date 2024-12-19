@@ -34,5 +34,8 @@
     bottom: -$spacing-1;
     left: 5%;
     background-color: $c3;
+    #cms & {
+      display: none;
+    }
   }
 }
