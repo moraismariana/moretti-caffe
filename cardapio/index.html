@@ -21,6 +21,8 @@
     <header class="header">
         <script>
             window.LOGO_URL = '../static/img/svg/';
+            window.Texto_CMS_URL = "http://127.0.0.1:8000/cardapiotexto/1/";
+            window.Bg_CMS_URL = "http://127.0.0.1:8000/cardapiobg/1/";
         </script>
         <ul>
             <li><a href="../"><img data-logo-menu src="../static/img/svg/Logo.svg" alt="Moretti Caffè"></a></li>
@@ -46,9 +48,9 @@
         </ul>
     </div>
     <article class="cardapio-introducao proximo-elemento">
-        <div class="cardapio-introducao-bg">
-            <h1 data-scroll-element="to-right">Cardápio</h1>
-            <p data-scroll-element="to-right">O melhor da culinária italiana.</p>
+        <div class="cardapio-introducao-bg" data-cms="bg">
+            <h1 data-scroll-element="to-right" data-cms="texto">Cardápio</h1>
+            <p data-scroll-element="to-right" data-cms="texto">O melhor da culinária italiana.</p>
         </div>
     </article>
     <section class="cardapio-categorias">

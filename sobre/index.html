@@ -21,6 +21,9 @@
     <header class="header">
         <script>
             window.LOGO_URL = '../static/img/svg/';
+            window.Texto_CMS_URL = "http://127.0.0.1:8000/sobretexto/1/";
+            window.Img_CMS_URL = "http://127.0.0.1:8000/sobreimg/1/";
+            window.Bg_CMS_URL = "http://127.0.0.1:8000/sobrebg/1/";
         </script>
         <ul>
             <li><a href="../"><img data-logo-menu src="../static/img/svg/Logo.svg" alt="Moretti Caffè"></a></li>
@@ -47,21 +50,21 @@
     </div>
 
     <article class="sobre-introducao proximo-elemento">
-        <div class="sobre-introducao-bg ">
+        <div class="sobre-introducao-bg " data-cms="bg">
             <div class="sobre-introducao-text">
-                <h1 data-scroll-element="to-right">Sobre o Moretti</h1>
-                <p data-scroll-element="to-right">O melhor da culinária italiana.</p>
+                <h1 data-scroll-element="to-right" data-cms="texto">Sobre o Moretti</h1>
+                <p data-scroll-element="to-right" data-cms="texto">O melhor da culinária italiana.</p>
             </div>
         </div>
     </article>
     <section class="sobre-info">
-        <p data-scroll-element="to-right">O Moretti Caffè nasceu do sonho de Alessandro Moretti, um cozinheiro apaixonado pela culinária italiana e suas raízes familiares. Crescendo em uma pequena vila na Toscana, Alessandro foi inspirado pelas refeições feitas com simplicidade e amor na cozinha de sua nonna, onde cada prato contava uma história e reunia a família ao redor da mesa.</p>
-        <p data-scroll-element="to-right">Após anos viajando pela Itália e aprimorando suas habilidades em renomadas escolas de culinária, Alessandro decidiu trazer a essência dessa experiência para o Brasil. Sua visão era criar um lugar onde as pessoas pudessem sentir o mesmo acolhimento e autenticidade que ele viveu em sua infância – com receitas artesanais que respeitam os ingredientes e honram a tradição. Assim nasceu o Moretti Caffè, um restaurante que combina sabores italianos autênticos com um toque pessoal e acolhedor.</p>
+        <p data-scroll-element="to-right" data-cms="texto">O Moretti Caffè nasceu do sonho de Alessandro Moretti, um cozinheiro apaixonado pela culinária italiana e suas raízes familiares. Crescendo em uma pequena vila na Toscana, Alessandro foi inspirado pelas refeições feitas com simplicidade e amor na cozinha de sua nonna, onde cada prato contava uma história e reunia a família ao redor da mesa.</p>
+        <p data-scroll-element="to-right" data-cms="texto">Após anos viajando pela Itália e aprimorando suas habilidades em renomadas escolas de culinária, Alessandro decidiu trazer a essência dessa experiência para o Brasil. Sua visão era criar um lugar onde as pessoas pudessem sentir o mesmo acolhimento e autenticidade que ele viveu em sua infância – com receitas artesanais que respeitam os ingredientes e honram a tradição. Assim nasceu o Moretti Caffè, um restaurante que combina sabores italianos autênticos com um toque pessoal e acolhedor.</p>
     </section>
     <section class="sobre-fundador">
-        <img data-scroll-element="to-right" src="../static/img/sobre/fundador.jpg" alt="Fundador do Moretti Ceffè">
-        <p data-scroll-element="to-right">"Para mim, a culinária sempre foi mais do que apenas comida – é um elo entre as pessoas, uma forma de expressar cuidado e de compartilhar histórias. No Moretti Caffè, cada prato e cada xícara de café carrega esse propósito. Aqui, você não encontrará apenas receitas, mas memórias e momentos que trazem a verdadeira alma da Itália. É uma honra ver nossos clientes sorrirem e sentirem-se em casa, exatamente como minha família fazia ao redor da mesa."</p>
-        <p data-scroll-element="to-right">— Alessandro Moretti, fundador e chef do Moretti Caffè</p>
+        <img data-cms="img" data-scroll-element="to-right" src="../static/img/sobre/fundador.jpg" alt="Fundador do Moretti Ceffè">
+        <p data-scroll-element="to-right" data-cms="texto">"Para mim, a culinária sempre foi mais do que apenas comida – é um elo entre as pessoas, uma forma de expressar cuidado e de compartilhar histórias. No Moretti Caffè, cada prato e cada xícara de café carrega esse propósito. Aqui, você não encontrará apenas receitas, mas memórias e momentos que trazem a verdadeira alma da Itália. É uma honra ver nossos clientes sorrirem e sentirem-se em casa, exatamente como minha família fazia ao redor da mesa."</p>
+        <p data-scroll-element="to-right" data-cms="texto">— Alessandro Moretti, fundador e chef do Moretti Caffè</p>
     </section>
     <footer class="footer">
         <p>Desenvolvido por Mariana Morais © 2024.</p>

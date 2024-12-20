@@ -1,7 +1,7 @@
 import initScrollEffect from "../estilizacao/scroll-effect.js";
 import initScrollTo from "../estilizacao/scroll-to.js";
 
-export default function initGetAPICardapio() {
+export default function initGetApiCardapio() {
   /*
   Função para pegar dados da API na tela de Cardápio e na tela de Categoria
   */
