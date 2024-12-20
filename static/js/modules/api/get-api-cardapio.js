@@ -19,7 +19,7 @@ export default function initGetApiCardapio() {
     });
   }
 
-  if (container) {
+  if (container && !document.body.id === "cms") {
     if (container.dataset.getApiContainer === "cardapio") {
       fetch("http://127.0.0.1:8000/categorias/")
         .then((response) => response.json())

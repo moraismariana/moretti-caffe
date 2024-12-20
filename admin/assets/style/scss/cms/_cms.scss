@@ -4,7 +4,7 @@
 
 .cms-header {
   box-sizing: border-box;
-  max-width: 1400px;
+  max-width: 1320px;
   padding: 0;
   position: relative;
   width: calc(100% - 40px);
@@ -21,7 +21,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: $s4;
+  padding: $s2 $s4;
   gap: $s5;
   div {
     display: flex;
@@ -52,6 +52,31 @@
     p {
       position: static;
       transform: none;
+    }
+  }
+}
+
+.cms-form {
+  input,
+  textarea {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: -3em 0;
+    overflow-y: visible;
+    resize: none;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: inherit;
+    text-transform: inherit;
+    color: inherit;
+    text-align: inherit;
+    line-height: inherit;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
     }
   }
 }

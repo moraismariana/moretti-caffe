@@ -18,22 +18,24 @@
 </head>
 
 <body id="cms">
-    <div class="cms-header">
-        <div class="cms-header-content">
-            <div>
-                <a href="../../">
-                    <img src="../../assets/img/left-arrow.svg" alt="Voltar para o painel de administração">
-                </a>
-                <p>Você está no modo de edição de conteúdo.</p>
+    <form class="cms-form">
+        <div class="cms-header">
+            <div class="cms-header-content">
+                <div>
+                    <a href="../../">
+                        <img src="../../assets/img/left-arrow.svg" alt="Voltar para o painel de administração">
+                    </a>
+                    <p>Você está no modo de edição de conteúdo.</p>
+                </div>
+                <button data-cms="botao-submit" type="submit">Salvar página</button>
             </div>
-            <button>Salvar página</button>
         </div>
-    </div>
 
-    <div class="cms-content">
         <header class="header">
             <script>
                 window.LOGO_URL = '../../../static/img/svg/';
+                window.Texto_CMS_URL = "http://127.0.0.1:8000/iniciotexto/2/";
+                window.Bg_CMS_URL = "http://127.0.0.1:8000/iniciobg/1/";
             </script>
             <ul>
                 <li><a href="./"><img data-logo-menu src="../../../static/img/svg/Logo.svg" alt="Moretti Caffè"></a></li>
@@ -45,7 +47,7 @@
                     <li><a href="../cardapio/">Cardápio</a></li>
                     <li><a href="./" data-link-externo="contato">Faça um pedido</a></li>
                 </div>
-                <button data-menu-mobile-botao>
+                <button type="button" data-menu-mobile-botao>
                     <div></div>
                 </button>
             </ul>
@@ -60,36 +62,40 @@
         </div>
 
         <article class="inicio-introducao proximo-elemento">
-            <div class="inicio-introducao-bg">
+            <div class="inicio-introducao-bg" data-cms="bg">
+                <input type="file" data-cmg="bg-input" accept="image/png, image/jpeg, image/webp" style="display: none;">
                 <div class="inicio-introducao-text">
-                    <h1 data-scroll-element="to-right">Moretti Caffè</h1>
-                    <p data-scroll-element="to-right">Tradição italiana em cada sabor.</h2>
+                    <h1 data-scroll-element="to-right" data-cms="texto"><textarea rows="1" required data-cms="texto-input"></textarea></h1>
+                    <p data-scroll-element="to-right" data-cms="texto"><textarea rows="1" required data-cms="texto-input"></textarea></h2>
                 </div>
             </div>
         </article>
-        <section class="inicio-cardapio" data-scroll-element="to-right">
-            <h2>Confira o nosso cardápio</h2>
+        <section class="inicio-cardapio" data-scroll-element="to-right" data-cms="bg">
+            <input type="file" data-cmg="bg-input" accept="image/png, image/jpeg, image/webp" style="display: none;">
+            <h2 data-cms="texto"><textarea required data-cms="texto-input"></textarea></h2>
             <a href="./cardapio/">Ver agora</a>
         </section>
-        <section class="inicio-historia" data-scroll-element="to-left">
-            <h2>Conheça a nossa história</h2>
+        <section class="inicio-historia" data-scroll-element="to-left" data-cms="bg">
+            <input type="file" data-cmg="bg-input" accept="image/png, image/jpeg, image/webp" style="display: none;">
+            <h2 data-cms="texto"><textarea required data-cms="texto-input"></textarea></h2>
             <a href="./sobre/">Ver agora</a>
         </section>
         <section class="inicio-pedido" data-scroll-element="to-right">
-            <div class="inicio-pedido-bg">
-                <h2>Faça um pedido</h2>
+            <div class="inicio-pedido-bg" data-cms="bg">
+                <input type="file" data-cmg="bg-input" accept="image/png, image/jpeg, image/webp" style="display: none;">
+                <h2 data-cms="texto"><textarea rows="1" required data-cms="texto-input"></textarea></h2>
                 <a href="./">Pedir agora</a>
             </div>
         </section>
         <section class="inicio-localizacao">
             <h2>Localização</h2>
-            <p>Rua Paraíba, 99, Savassi - Belo Horizonte - 30112000</p>
+            <p data-cms="texto"><textarea rows="1" required data-cms="texto-input"></textarea></p>
             <a href="./">Ver no Maps</a>
         </section>
         <footer class="footer">
             <p>Desenvolvido por Mariana Morais © 2024.</p>
         </footer>
-    </div>
+    </form>
 
     <script type="module" src="../../../static/js/script.js"></script>
 </body>

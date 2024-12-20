@@ -18,22 +18,24 @@
 </head>
 
 <body id="cms">
-    <div class="cms-header">
-        <div class="cms-header-content">
-            <div>
-                <a href="../../">
-                    <img src="../../assets/img/left-arrow.svg" alt="Voltar para o painel de administração">
-                </a>
-                <p>Você está no modo de edição de conteúdo.</p>
+    <form class="cms-form">
+        <div class="cms-header">
+            <div class="cms-header-content">
+                <div>
+                    <a href="../../">
+                        <img src="../../assets/img/left-arrow.svg" alt="Voltar para o painel de administração">
+                    </a>
+                    <p>Você está no modo de edição de conteúdo.</p>
+                </div>
+                <button data-cms="botao-submit" type="submit">Salvar página</button>
             </div>
-            <button>Salvar página</button>
         </div>
-    </div>
 
-    <div class="cms-content">
         <header class="header">
             <script>
                 window.LOGO_URL = '../../../static/img/svg/';
+                window.Texto_CMS_URL = "http://127.0.0.1:8000/cardapiotexto/1/";
+                window.Bg_CMS_URL = "http://127.0.0.1:8000/cardapiobg/1/";
             </script>
             <ul>
                 <li><a href="../"><img data-logo-menu src="../../../static/img/svg/Logo.svg" alt="Moretti Caffè"></a></li>
@@ -45,7 +47,7 @@
                     <li><a href="../cardapio/">Cardápio</a></li>
                     <li><a href="./" data-link-externo="contato">Faça um pedido</a></li>
                 </div>
-                <button data-menu-mobile-botao>
+                <button type="button" data-menu-mobile-botao>
                     <div></div>
                 </button>
             </ul>
@@ -59,9 +61,10 @@
             </ul>
         </div>
         <article class="cardapio-introducao proximo-elemento">
-            <div class="cardapio-introducao-bg">
-                <h1 data-scroll-element="to-right">Cardápio</h1>
-                <p data-scroll-element="to-right">O melhor da culinária italiana.</p>
+            <div class="cardapio-introducao-bg" data-cms="bg">
+                <input type="file" data-cmg="bg-input" accept="image/png, image/jpeg, image/webp" style="display: none;">
+                <h1 data-scroll-element="to-right" data-cms="texto"><textarea rows="1" required data-cms="texto-input"></textarea></h1>
+                <p data-scroll-element="to-right" data-cms="texto"><textarea rows="1" required data-cms="texto-input"></textarea></p>
             </div>
         </article>
         <section class="cardapio-categorias">
@@ -79,9 +82,9 @@
         <footer class="footer">
             <p>Desenvolvido por Mariana Morais © 2024.</p>
         </footer>
-    </div>
+    </form>
 
-    <!-- <script type="module" src="../../../static/js/script.js"></script> -->
+    <script type="module" src="../../../static/js/script.js"></script>
 </body>
 
 </html>

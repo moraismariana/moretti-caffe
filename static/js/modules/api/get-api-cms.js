@@ -10,7 +10,11 @@ export default function initGetApiCms() {
         let textosApi = Object.values(dados);
         textosApi.shift();
         for (let i = 0; i < textosHtml.length; i++) {
-          textosHtml[i].innerText = textosApi[i];
+          if (!textosHtml[i].innerHTML.includes("<textarea")) {
+            textosHtml[i].innerText = textosApi[i];
+          } else {
+            textosHtml[i].querySelector("textarea").innerText = textosApi[i];
+          }
         }
       });
   }
