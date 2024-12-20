@@ -20,7 +20,10 @@ export default function initGetObjectsAPI() {
   }
 
   if (container) {
-    if (container.dataset.getApiContainer === "cardapio") {
+    if (
+      container.dataset.getApiContainer === "cardapio" &&
+      !(document.body.id === "cms")
+    ) {
       fetch("http://127.0.0.1:8000/categorias/")
         .then((response) => {
           return response.json();

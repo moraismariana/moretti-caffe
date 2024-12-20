@@ -8,11 +8,16 @@ export default function initGetApiCms() {
       .then((response) => response.json())
       .then((dados) => {
         let textosApi = Object.values(dados);
+        let atributosApi = Object.keys(dados);
         textosApi.shift();
+        atributosApi.shift();
         for (let i = 0; i < textosHtml.length; i++) {
           if (!textosHtml[i].innerHTML.includes("<textarea")) {
             textosHtml[i].innerText = textosApi[i];
           } else {
+            textosHtml[i].querySelector(
+              "textarea"
+            ).dataset.cmsAtributo = `${atributosApi[i]}`;
             textosHtml[i].querySelector("textarea").innerText = textosApi[i];
           }
         }
@@ -24,9 +29,12 @@ export default function initGetApiCms() {
       .then((response) => response.json())
       .then((dados) => {
         let bgsApi = Object.values(dados);
+        let atributosApi = Object.keys(dados);
         bgsApi.shift();
+        atributosApi.shift();
         for (let i = 0; i < bgsHtml.length; i++) {
           bgsHtml[i].style.backgroundImage = `url(${bgsApi[i]})`;
+          bgsHtml[i].dataset.cmsAtributo = `${atributosApi[i]}`;
         }
       });
   }
@@ -36,9 +44,12 @@ export default function initGetApiCms() {
       .then((response) => response.json())
       .then((dados) => {
         let imgsApi = Object.values(dados);
+        let atributosApi = Object.keys(dados);
         imgsApi.shift();
+        atributosApi.shift();
         for (let i = 0; i < imgsHtml.length; i++) {
           imgsHtml[i].src = imgsApi[i];
+          imgsHtml[i].dataset.cmsAtributo = `${atributosApi[i]}`;
         }
       });
   }
