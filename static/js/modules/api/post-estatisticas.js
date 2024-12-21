@@ -13,6 +13,12 @@ export default function initEstatisticas() {
   Sempre que o usuário tocar em um link externo durante a sessão, armazenar no sessionStorage o valor 1 indicando que tocou naquele link. Caso toque no link novamente, continuará sendo contabilizado 1 única vez.
   */
 
+  let dados = {};
+
+  function isTruthy(valor) {
+    return valor === "true" ? true : false;
+  }
+
   function resetarValoresLocalStorage() {
     /* Caso o link anterior da navegação seja o próprio site, não faz nada.
     Porém, caso tenha vindo de outro site, a função reseta os valores do localStorage referente às estatísticas, exceto o de revisita. */
@@ -65,6 +71,8 @@ export default function initEstatisticas() {
       linksContato.forEach((link) => {
         link.addEventListener("click", () => {
           localStorage.setItem("toqueLinkContato", true);
+          dados.toque_contato = isTruthy(localStorage.toqueLinkContato);
+          // preparacaoDosDados();
         });
       });
     }
@@ -118,11 +126,9 @@ export default function initEstatisticas() {
   }
 
   function preparacaoDosDados() {
-    function isTruthy(valor) {
-      return valor === "true" ? true : false;
-    }
+    console.log(isTruthy(localStorage.toqueLinkContato));
 
-    const dados = {
+    dados = {
       revisita: isTruthy(localStorage.revisita),
       acesso_cardapio: isTruthy(localStorage.acessoCardapio),
       acesso_pagina_inicial: isTruthy(localStorage.acessoPaginaInicial),
