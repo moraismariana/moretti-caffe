@@ -4,7 +4,25 @@ export default function initGetEstatisticas() {
   const filterButtons = document.querySelectorAll("[data-filter-button]");
 
   if (filterButtons[0]) {
-    fazerRequisicao("http://127.0.0.1:8000/acessos/resumo/30/", "30");
+    if (sessionStorage.estatisticas) {
+      filtrarDadosSwitch(sessionStorage.estatisticas);
+      let botao;
+      filterButtons.forEach((item) => {
+        if (item.dataset.filterButton === sessionStorage.estatisticas) {
+          botao = item;
+        }
+      });
+      botao.classList.add("active");
+    } else {
+      filtrarDadosSwitch("30");
+      let botao;
+      filterButtons.forEach((item) => {
+        if (item.dataset.filterButton === "30") {
+          botao = item;
+        }
+      });
+      botao.classList.add("active");
+    }
 
     filterButtons.forEach((button) => {
       button.addEventListener("click", (event) => {
@@ -17,30 +35,39 @@ export default function initGetEstatisticas() {
       });
     });
 
-    function filtrarDados(button) {
-      /* Função que filtra os dados com base no botão selecionado */
-      const filtro = button.dataset.filterButton;
-
+    function filtrarDadosSwitch(filtro) {
       switch (filtro) {
         case "geral":
           fazerRequisicao(
             "http://127.0.0.1:8000/estatisticas-gerais/1/",
             "geral"
           );
+          sessionStorage.setItem("estatisticas", "geral");
           break;
         case "30":
           fazerRequisicao("http://127.0.0.1:8000/acessos/resumo/30/", "30");
+          sessionStorage.setItem("estatisticas", "30");
           break;
         case "15":
           fazerRequisicao("http://127.0.0.1:8000/acessos/resumo/15/", "15");
+          sessionStorage.setItem("estatisticas", "15");
           break;
         case "7":
           fazerRequisicao("http://127.0.0.1:8000/acessos/resumo/7/", "7");
+          sessionStorage.setItem("estatisticas", "7");
           break;
         case "1":
           fazerRequisicao("http://127.0.0.1:8000/acessos/resumo/1/", "1");
+          sessionStorage.setItem("estatisticas", "1");
           break;
       }
+    }
+
+    function filtrarDados(button) {
+      /* Função que filtra os dados com base no botão selecionado */
+      const filtro = button.dataset.filterButton;
+
+      filtrarDadosSwitch(filtro);
     }
 
     function fazerRequisicao(url, tipoDeFiltro) {
