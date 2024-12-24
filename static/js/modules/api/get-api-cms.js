@@ -3,74 +3,68 @@ export default function initGetApiCms() {
   const imgsHtml = document.querySelectorAll('[data-cms="img"]');
   const bgsHtml = document.querySelectorAll('[data-cms="bg"]');
 
-  async function preencherTextos() {
-    fetch(window.Texto_CMS_URL)
-      .then((response) => response.json())
-      .then((dados) => {
-        let textosApi = Object.values(dados);
-        let atributosApi = Object.keys(dados);
-        textosApi.shift();
-        atributosApi.shift();
-        for (let i = 0; i < textosHtml.length; i++) {
-          if (!textosHtml[i].innerHTML.includes("<textarea")) {
-            textosHtml[i].innerText = textosApi[i];
-          } else {
-            textosHtml[i].querySelector(
-              "textarea"
-            ).dataset.cmsAtributo = `${atributosApi[i]}`;
-            textosHtml[i].querySelector("textarea").innerText = textosApi[i];
+  let promises = [];
+
+  if (textosHtml[0] && window.Texto_CMS_URL) {
+    promises.push(fetch(window.Texto_CMS_URL));
+  }
+
+  if (bgsHtml[0] && window.Bg_CMS_URL) {
+    promises.push(fetch(window.Bg_CMS_URL));
+  }
+
+  if (imgsHtml[0] && window.Img_CMS_URL) {
+    promises.push(fetch(window.Img_CMS_URL));
+  }
+
+  if (textosHtml[0] || bgsHtml[0] || imgsHtml[0]) {
+    Promise.all(promises)
+      .then(async (responses) => {
+        for (const response of responses) {
+          const dados = await response.json();
+          switch (response.url) {
+            case window.Texto_CMS_URL:
+              let textosApi = Object.values(dados);
+              let textosApiAttr = Object.keys(dados);
+              textosApi.shift();
+              textosApiAttr.shift();
+              for (let i = 0; i < textosHtml.length; i++) {
+                if (!textosHtml[i].innerHTML.includes("<textarea")) {
+                  textosHtml[i].innerText = textosApi[i];
+                } else {
+                  textosHtml[i].querySelector(
+                    "textarea"
+                  ).dataset.cmsAtributo = `${textosApiAttr[i]}`;
+                  textosHtml[i].querySelector("textarea").innerText =
+                    textosApi[i];
+                }
+              }
+              break;
+            case window.Bg_CMS_URL:
+              let bgsApi = Object.values(dados);
+              let bgdApiAttr = Object.keys(dados);
+              bgsApi.shift();
+              bgdApiAttr.shift();
+              for (let i = 0; i < bgsHtml.length; i++) {
+                bgsHtml[i].style.backgroundImage = `url(${bgsApi[i]})`;
+                bgsHtml[i].dataset.cmsAtributo = `${bgdApiAttr[i]}`;
+              }
+              break;
+            case window.Img_CMS_URL:
+              let imgsApi = Object.values(dados);
+              let imgsApiAttr = Object.keys(dados);
+              imgsApi.shift();
+              imgsApiAttr.shift();
+              for (let i = 0; i < imgsHtml.length; i++) {
+                imgsHtml[i].src = imgsApi[i];
+                imgsHtml[i].dataset.cmsAtributo = `${imgsApiAttr[i]}`;
+              }
+              break;
           }
         }
+      })
+      .finally(() => {
+        document.body.classList.add("visible");
       });
   }
-
-  async function preencherBgs() {
-    fetch(window.Bg_CMS_URL)
-      .then((response) => response.json())
-      .then((dados) => {
-        let bgsApi = Object.values(dados);
-        let atributosApi = Object.keys(dados);
-        bgsApi.shift();
-        atributosApi.shift();
-        for (let i = 0; i < bgsHtml.length; i++) {
-          bgsHtml[i].style.backgroundImage = `url(${bgsApi[i]})`;
-          bgsHtml[i].dataset.cmsAtributo = `${atributosApi[i]}`;
-        }
-      });
-  }
-
-  async function preencherImgs() {
-    fetch(window.Img_CMS_URL)
-      .then((response) => response.json())
-      .then((dados) => {
-        let imgsApi = Object.values(dados);
-        let atributosApi = Object.keys(dados);
-        imgsApi.shift();
-        atributosApi.shift();
-        for (let i = 0; i < imgsHtml.length; i++) {
-          imgsHtml[i].src = imgsApi[i];
-          imgsHtml[i].dataset.cmsAtributo = `${atributosApi[i]}`;
-        }
-      });
-  }
-
-  function preencherTudo() {
-    if (textosHtml[0] && window.Texto_CMS_URL) {
-      preencherTextos();
-    }
-
-    if (bgsHtml[0] && window.Bg_CMS_URL) {
-      preencherBgs();
-    }
-
-    if (imgsHtml[0] && window.Img_CMS_URL) {
-      preencherImgs();
-    }
-
-    setTimeout(() => {
-      document.body.classList.add("visible");
-    }, 300);
-  }
-
-  preencherTudo();
 }
