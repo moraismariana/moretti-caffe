@@ -3,7 +3,7 @@ export default function initGetApiCms() {
   const imgsHtml = document.querySelectorAll('[data-cms="img"]');
   const bgsHtml = document.querySelectorAll('[data-cms="bg"]');
 
-  function preencherTextos() {
+  async function preencherTextos() {
     fetch(window.Texto_CMS_URL)
       .then((response) => response.json())
       .then((dados) => {
@@ -24,7 +24,7 @@ export default function initGetApiCms() {
       });
   }
 
-  function preencherBgs() {
+  async function preencherBgs() {
     fetch(window.Bg_CMS_URL)
       .then((response) => response.json())
       .then((dados) => {
@@ -39,7 +39,7 @@ export default function initGetApiCms() {
       });
   }
 
-  function preencherImgs() {
+  async function preencherImgs() {
     fetch(window.Img_CMS_URL)
       .then((response) => response.json())
       .then((dados) => {
@@ -54,15 +54,23 @@ export default function initGetApiCms() {
       });
   }
 
-  if (textosHtml[0] && window.Texto_CMS_URL) {
-    preencherTextos();
+  function preencherTudo() {
+    if (textosHtml[0] && window.Texto_CMS_URL) {
+      preencherTextos();
+    }
+
+    if (bgsHtml[0] && window.Bg_CMS_URL) {
+      preencherBgs();
+    }
+
+    if (imgsHtml[0] && window.Img_CMS_URL) {
+      preencherImgs();
+    }
+
+    setTimeout(() => {
+      document.body.classList.add("visible");
+    }, 300);
   }
 
-  if (bgsHtml[0] && window.Bg_CMS_URL) {
-    preencherBgs();
-  }
-
-  if (imgsHtml[0] && window.Img_CMS_URL) {
-    preencherImgs();
-  }
+  preencherTudo();
 }

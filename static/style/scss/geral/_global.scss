@@ -98,17 +98,20 @@ img {
   }
 }
 
-// #pagina-inicial-content,
-// #sobre-content,
-// #servicos-content,
-// #projetos-content,
-// #contato-content,
-// #clientes-content,
-// #projeto-esp-content {
-//   opacity: 0;
-//   transition: 0.8s;
-// }
+.js body:not(#cms) {
+  opacity: 0;
+  transition: 0.8s !important;
+  &.visible {
+    animation: fade-in 0.5s forwards;
+    // opacity: 1 !important;
+  }
+}
 
-// .visible {
-//   opacity: 1 !important;
-// }
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
