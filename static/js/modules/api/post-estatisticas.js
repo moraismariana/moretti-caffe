@@ -126,8 +126,6 @@ export default function initEstatisticas() {
   }
 
   function preparacaoDosDados() {
-    console.log(isTruthy(localStorage.toqueLinkContato));
-
     dados = {
       revisita: isTruthy(localStorage.revisita),
       acesso_cardapio: isTruthy(localStorage.acessoCardapio),

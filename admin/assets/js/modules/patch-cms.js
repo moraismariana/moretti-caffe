@@ -93,8 +93,6 @@ export default function initPatchCms() {
         if (textoInputs[0]) {
           textosFormData = new FormData();
           for (let i = 0; i < textoInputs.length; i++) {
-            console.log(textoInputs[i].dataset.cmsAtributo);
-            console.log(textoInputs[i].value);
             textosFormData.append(
               textoInputs[i].dataset.cmsAtributo,
               textoInputs[i].value
@@ -129,8 +127,8 @@ export default function initPatchCms() {
           bgsFormData = new FormData();
           for (let i = 0; i < bgInputs.length; i++) {
             let bg = bgInputs[i].files;
-            if (bg) {
-              bgsFormData.append(bgsHtml[i].dataset.cmsAtributo, bg);
+            if (bg.length > 0) {
+              bgsFormData.append(bgsHtml[i].dataset.cmsAtributo, bg[0]);
             }
           }
         }
@@ -144,33 +142,61 @@ export default function initPatchCms() {
   function enviarDados(textosFormData, imgsFormData, bgsFormData) {
     const token = localStorage.getItem("accessToken");
 
-    enviarTextos(textosFormData);
+    // enviarTextos(textosFormData);
+    // enviarBgs(bgsFormData);
 
-    function enviarTextos(textosFormData) {
-      if (textosFormData && window.Texto_CMS_URL) {
-        let options = {
-          method: "PATCH",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          body: textosFormData,
-        };
+    let options = {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
 
-        fetch(window.Texto_CMS_URL, options).then((response) => {
-          if (response.ok) {
-            alert("Página atualizada com sucesso!");
-            window.location.reload();
-          } else if (response.status === 401) {
-            refreshToken().then(() => {
-              const novoToken = localStorage.getItem("accessToken");
-              options.headers.Authorization = `Bearer ${novoToken}`;
-              enviarDados(textosFormData, imgsFormData, bgsFormData);
-            });
-          } else if (!response.ok) {
-            console.log(response);
-          }
-        });
-      }
+    let promises = [];
+
+    if (textosFormData && window.Texto_CMS_URL) {
+      promises.push(
+        fetch(window.Texto_CMS_URL, { ...options, body: textosFormData })
+      );
     }
+
+    if (bgsFormData && window.Bg_CMS_URL) {
+      promises.push(
+        fetch(window.Bg_CMS_URL, { ...options, body: bgsFormData })
+      );
+    }
+
+    if (imgsFormData && window.Img_CMS_URL) {
+      promises.push(
+        fetch(window.Img_CMS_URL, { ...options, body: imgsFormData })
+      );
+    }
+
+    Promise.all(promises).then((responses) => {
+      let hasError = false;
+      let error401 = false;
+
+      responses.forEach((response, index) => {
+        if (!response.ok) {
+          hasError = true;
+        }
+        if (response.status === 401) {
+          error401 = true;
+        }
+      });
+
+      if (error401) {
+        refreshToken().then(() => {
+          const novoToken = localStorage.getItem("accessToken");
+          options.headers.Authorization = `Bearer ${novoToken}`;
+          enviarDados(textosFormData, imgsFormData, bgsFormData);
+        });
+      } else if (hasError) {
+        console.log("Erro na requisição Promise.all");
+      } else {
+        alert("Página atualizada com sucesso!");
+        window.location.reload();
+      }
+    });
   }
 }

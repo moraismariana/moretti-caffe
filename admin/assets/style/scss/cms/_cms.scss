@@ -79,4 +79,8 @@
       display: none;
     }
   }
+  [data-cms="img"],
+  [data-cms="bg"] {
+    cursor: pointer;
+  }
 }
