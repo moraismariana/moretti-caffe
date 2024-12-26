@@ -72,10 +72,9 @@ export default function initCreateObjectsAPI() {
       const preco = document.getElementById("create-prato-preco").value;
       const descricao = document.getElementById("create-prato-desc").value;
       const imagem = document.getElementById("create-prato-imagem").files[0];
+      const imageName = `${nome.toLowerCase().replace(/[ ]+/g, "-")}`;
       const params = new URLSearchParams(window.location.search);
       const categoria = +params.get("c");
-
-      const blobImagem = new Blob([imagem], { type: "image/jpeg" });
 
       const formData = new FormData();
       formData.append("nome", nome);
@@ -83,8 +82,8 @@ export default function initCreateObjectsAPI() {
       formData.append("descricao", descricao);
       formData.append(
         "imagem",
-        blobImagem,
-        `${nome.toLowerCase().replace(/[ ]+/g, "-")}.jpeg`
+        imagem,
+        `${imageName}${imagem.name.substring(imagem.name.lastIndexOf("."))}`
       );
       formData.append("categoria", categoria);
 
