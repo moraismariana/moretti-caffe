@@ -15,7 +15,10 @@ export default function initListSizeStyle() {
     if (document.body.id === "categoria" && window.innerWidth <= 768) {
       conteudo.dataset.listSizeTam = "1";
     }
-    if (listaItens.length <= +conteudo.dataset.listSizeTam) {
+    if (
+      listaItens.length <= +conteudo.dataset.listSizeTam &&
+      !(window.innerWidth <= 480)
+    ) {
       conteudo.dataset.listSizeP = "true";
     } else if (listaItens.length > +conteudo.dataset.listSizeTam) {
       conteudo.dataset.listSizeP = "false";
