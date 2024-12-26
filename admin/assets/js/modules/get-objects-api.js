@@ -78,9 +78,12 @@ export default function initGetObjectsAPI() {
               HTMLElement.dataset.listSizeItem = "";
               HTMLElement.classList.add("cardapio-prato");
               HTMLElement.innerHTML = `
-                    <div>
-                        <h3>${item.nome}<span>${item.preco}</span></h3>
-                        <p>${item.descricao}</p>
+                    <div class="categoria-item-conteudo">
+                        <img src="${item.imagem}" alt="Prato">
+                        <div>
+                            <h3>${item.nome}<span>${item.preco}</span></h3>
+                            <p>${item.descricao}</p>
+                        </div>
                     </div>
                     <div>
                         <button data-categoria-id="${URLCategoria}" data-prato-id="${item.id}" data-prato-nome="${item.nome}" data-prato-preco="${item.preco}" data-prato-desc="${item.descricao}" data-prato-imagem="${item.imagem}" data-modal="abrir" data-modal-type="update-prato"><img src="../../assets/img/edit.svg" alt="Editar prato"></button>
