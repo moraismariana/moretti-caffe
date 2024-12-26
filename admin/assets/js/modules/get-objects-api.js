@@ -48,7 +48,7 @@ export default function initGetObjectsAPI() {
         .then(() => {
           initModal();
           initListSizeStyle();
-
+          document.body.classList.add("visible");
           const links = document.querySelectorAll('[href^="./categoria/"]');
           armazenarTitulo(links);
         })
@@ -96,6 +96,7 @@ export default function initGetObjectsAPI() {
         .then(() => {
           initModal();
           initListSizeStyle();
+          document.body.classList.add("visible");
         })
         .catch((erro) => {
           alert(

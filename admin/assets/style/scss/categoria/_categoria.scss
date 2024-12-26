@@ -151,3 +151,20 @@
     }
   }
 }
+
+// mostrar conteúdo apenas após requisição API concluída
+#categoria {
+  opacity: 0;
+  &.visible {
+    animation: fade-in 0.3s forwards;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
