@@ -1,3 +1,5 @@
+import initAnimaNumeros from "./anima-numeros.js";
+
 export default function initGetEstatisticas() {
   /* Função para capturar dados da API com base nos filtros de intervalo de tempo */
 
@@ -76,6 +78,7 @@ export default function initGetEstatisticas() {
         .then((response) => response.json())
         .then((dados) => {
           manipularDOM(dados, tipoDeFiltro);
+          initAnimaNumeros();
         })
         .catch(() =>
           alert(

@@ -72,6 +72,9 @@ export default function initGetApiCardapio() {
             }
           });
           initScrollEffect();
+        })
+        .finally(() => {
+          document.body.classList.add("visible");
         });
     }
   }
