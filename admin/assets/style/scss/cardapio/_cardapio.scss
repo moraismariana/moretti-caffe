@@ -12,10 +12,15 @@
   position: relative;
   top: calc(50vh - 100px);
   transform: translateY(-50%);
-  @include resp-height(730px) {
+  @include resp-height(660px) {
     position: static;
     transform: none;
   }
+}
+
+.cardapio-conteudo[data-list-size-p="false"] {
+  position: static;
+  transform: none;
 }
 
 .cardapio-intro {

@@ -67,3 +67,17 @@ img {
   text-align: end;
   margin-top: $s4;
 }
+
+.cardapio-aviso {
+  @include text-2;
+  @include align-div;
+  display: flex;
+  flex-direction: column;
+  gap: $s1;
+  text-align: center;
+  max-width: 39ch;
+  display: none;
+  &.ativo {
+    display: flex;
+  }
+}

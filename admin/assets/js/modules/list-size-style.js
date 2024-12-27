@@ -11,16 +11,39 @@ export default function initListSizeStyle() {
   const conteudo = document.querySelector("[data-list-size]");
   const listaItens = document.querySelectorAll("[data-list-size-item]");
 
+  function ativarAviso() {
+    /* Ativa um aviso caso não tenha nenhuma categoria ou prato. */
+    if (listaItens.length === 0) {
+      const aviso = document.querySelector(".cardapio-aviso");
+      if (aviso) {
+        aviso.classList.add("ativo");
+      }
+    } else if (listaItens.length > 0) {
+      const aviso = document.querySelector(".cardapio-aviso");
+      if (aviso) {
+        aviso.classList.remove("ativo");
+      }
+    }
+  }
+
   if (conteudo && listaItens) {
     if (document.body.id === "categoria" && window.innerWidth <= 768) {
       conteudo.dataset.listSizeTam = "1";
     }
+    ativarAviso();
     if (
-      listaItens.length <= +conteudo.dataset.listSizeTam &&
-      !(window.innerWidth <= 480)
+      listaItens.length <= +conteudo.dataset.listSizeTam ||
+      !(window.innerWidth <= 480) ||
+      listaItens.length === 0
     ) {
       conteudo.dataset.listSizeP = "true";
-    } else if (listaItens.length > +conteudo.dataset.listSizeTam) {
+    }
+    if (
+      listaItens.length > +conteudo.dataset.listSizeTam ||
+      (window.innerWidth <= 480 &&
+        listaItens.length >= 1 &&
+        document.body.id === "categoria")
+    ) {
       conteudo.dataset.listSizeP = "false";
     }
   }
