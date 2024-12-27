@@ -98,7 +98,7 @@ img {
   }
 }
 
-.js body:not(#cms) {
+.js body {
   opacity: 0;
   transition: 0.8s !important;
   &.visible {
