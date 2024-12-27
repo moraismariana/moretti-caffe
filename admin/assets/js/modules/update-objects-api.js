@@ -43,11 +43,25 @@ export default function initUpdateObjectsAPI() {
                   options.headers.Authorization = `Bearer ${novoToken}`;
                   atualizarCategoria();
                 });
-              } else if (!response.ok) {
+              } else if (response.status === 400) {
                 return response.json();
+              } else if (!response.ok) {
+                console.log(response.json());
               }
             })
-            .then((r) => console.log(r));
+            .then((response) => {
+              // TRATAMENTO DE EXCEÇÕES EM CADA CAMPO
+              if (response.nome) {
+                const alert = document.querySelector(
+                  "#update-categoria .form-alert"
+                );
+                const string = response.nome[0];
+                const novaString =
+                  string.charAt(0).toUpperCase() + string.slice(1);
+                alert.innerHTML = novaString;
+                console.log(novaString);
+              }
+            });
         }
 
         atualizarCategoria();
@@ -57,6 +71,8 @@ export default function initUpdateObjectsAPI() {
     if (pratoFormulario) {
       pratoFormulario.addEventListener("submit", (event) => {
         event.preventDefault();
+
+        const alert = document.querySelector("#update-prato .form-alert");
 
         const novoNome = document.getElementById("update-prato-nome").value;
         const novoPreco = document.getElementById("update-prato-preco").value;
@@ -98,8 +114,8 @@ export default function initUpdateObjectsAPI() {
         };
 
         function atualizarPrato() {
-          fetch(`http://127.0.0.1:8000/pratos/${idPrato}/`, options).then(
-            (response) => {
+          fetch(`http://127.0.0.1:8000/pratos/${idPrato}/`, options)
+            .then((response) => {
               if (response.ok) {
                 window.location.href = `http://127.0.0.1:5500/admin/cardapio/categoria/?c=${idCategoria}`;
               } else if (response.status === 403) {
@@ -116,8 +132,32 @@ export default function initUpdateObjectsAPI() {
               } else if (response.status === 415) {
                 alert.innerHTML = "Arquivo de mídia não suportado";
               }
-            }
-          );
+            })
+            .then((response) => {
+              // TRATAMENTO DE EXCEÇÕES EM CADA CAMPO
+              console.log(response);
+              if (response.nome) {
+                alert.innerText = `${response.nome[0].replace(
+                  "este campo",
+                  "o campo Nome"
+                )}`;
+              } else if (response.preco) {
+                alert.innerText = `${response.preco[0].replace(
+                  "este campo",
+                  "o campo Preço"
+                )}`;
+              } else if (response.imagem) {
+                alert.innerText = `${response.imagem[0].replace(
+                  "este campo",
+                  "o campo Preço"
+                )}`;
+              } else if (response.descricao) {
+                alert.innerText = `${response.imagem[0].replace(
+                  "este campo",
+                  "o campo Preço"
+                )}`;
+              }
+            });
         }
 
         atualizarPrato();

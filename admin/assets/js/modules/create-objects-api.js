@@ -49,13 +49,17 @@ export default function initCreateObjectsAPI() {
             }
           })
           .then((response) => {
-            const alert = document.querySelector(
-              "#create-categoria .form-alert"
-            );
-            const string = response.nome[0];
-            const novaString = string.charAt(0).toUpperCase() + string.slice(1);
-            alert.innerHTML = novaString;
-            console.log(novaString);
+            // TRATAMENTO DE EXCEÇÕES EM CADA CAMPO
+            if (response.nome) {
+              const alert = document.querySelector(
+                "#create-categoria .form-alert"
+              );
+              const string = response.nome[0];
+              const novaString =
+                string.charAt(0).toUpperCase() + string.slice(1);
+              alert.innerHTML = novaString;
+              console.log(novaString);
+            }
           });
       }
       enviarNovaCategoria();
@@ -98,24 +102,50 @@ export default function initCreateObjectsAPI() {
       };
 
       function enviarNovoPrato() {
-        fetch("http://127.0.0.1:8000/pratos/", options).then((response) => {
-          if (response.ok) {
-            window.location.href = `http://127.0.0.1:5500/admin/cardapio/categoria/?c=${categoria}`;
-          } else if (response.status === 403) {
-            alert("Você não tem permissão para adicionar novos itens.");
-          } else if (response.status === 401) {
-            refreshToken().then(() => {
-              const novoToken = localStorage.getItem("accessToken");
-              options.headers.Authorization = `Bearer ${novoToken}`;
-              enviarNovoPrato();
-            });
-          } else if (response.status === 400) {
+        fetch("http://127.0.0.1:8000/pratos/", options)
+          .then((response) => {
+            if (response.ok) {
+              window.location.href = `http://127.0.0.1:5500/admin/cardapio/categoria/?c=${categoria}`;
+            } else if (response.status === 403) {
+              alert("Você não tem permissão para adicionar novos itens.");
+            } else if (response.status === 401) {
+              refreshToken().then(() => {
+                const novoToken = localStorage.getItem("accessToken");
+                options.headers.Authorization = `Bearer ${novoToken}`;
+                enviarNovoPrato();
+              });
+            } else if (response.status === 400) {
+              console.log(response);
+              return response.json();
+            } else if (response.status === 415) {
+              alert.innerHTML = "Arquivo de mídia não suportado";
+            }
+          })
+          .then((response) => {
+            // TRATAMENTO DE EXCEÇÕES EM CADA CAMPO
             console.log(response);
-            return response.json();
-          } else if (response.status === 415) {
-            alert.innerHTML = "Arquivo de mídia não suportado";
-          }
-        });
+            if (response.nome) {
+              alert.innerText = `${response.nome[0].replace(
+                "este campo",
+                "o campo Nome"
+              )}`;
+            } else if (response.preco) {
+              alert.innerText = `${response.preco[0].replace(
+                "este campo",
+                "o campo Preço"
+              )}`;
+            } else if (response.imagem) {
+              alert.innerText = `${response.imagem[0].replace(
+                "este campo",
+                "o campo Preço"
+              )}`;
+            } else if (response.descricao) {
+              alert.innerText = `${response.imagem[0].replace(
+                "este campo",
+                "o campo Preço"
+              )}`;
+            }
+          });
       }
       enviarNovoPrato();
     });
