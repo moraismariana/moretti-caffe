@@ -43,9 +43,9 @@ export default function initPatchCms() {
 
               ctx.drawImage(img, -offsetX, -offsetY, newWidth, newHeight);
 
-              imgsHtml[i].src = canvas.toDataURL(file.type);
+              imgsHtml[i].src = canvas.toDataURL("image/webp");
 
-              imgsHtml[i].dataset.imageData = canvas.toDataURL(file.type);
+              imgsHtml[i].dataset.imageData = canvas.toDataURL("image/webp");
             };
             img.src = e.target.result;
           };
@@ -101,6 +101,8 @@ export default function initPatchCms() {
         }
 
         // IMAGENS
+        const imgPromises = [];
+
         if (imgInputs[0]) {
           imgsFormData = new FormData();
           for (let i = 0; i < imgInputs.length; i++) {
@@ -108,15 +110,16 @@ export default function initPatchCms() {
             if (img) {
               let imgDataUrl = imgsHtml[i].dataset.imageData;
               if (imgDataUrl) {
-                fetch(imgDataUrl)
+                const imgPromise = fetch(imgDataUrl)
                   .then((response) => response.blob())
                   .then((blob) => {
                     imgsFormData.append(
                       imgsHtml[i].dataset.cmsAtributo,
                       blob,
-                      `${imgsHtml[i].dataset.cmsAtributo}.jpeg`
+                      `${imgsHtml[i].dataset.cmsAtributo}.webp`
                     );
                   });
+                imgPromises.push(imgPromise);
               }
             }
           }
@@ -128,11 +131,22 @@ export default function initPatchCms() {
           for (let i = 0; i < bgInputs.length; i++) {
             let bg = bgInputs[i].files;
             if (bg.length > 0) {
-              bgsFormData.append(bgsHtml[i].dataset.cmsAtributo, bg[0]);
+              bgsFormData.append(
+                bgsHtml[i].dataset.cmsAtributo,
+                bg[0],
+                `${bgsHtml[i].dataset.cmsAtributo}.webp`
+              );
             }
           }
         }
-        enviarDados(textosFormData, imgsFormData, bgsFormData);
+
+        if (imgPromises.length > 0) {
+          Promise.all(imgPromises).then(() => {
+            enviarDados(textosFormData, imgsFormData, bgsFormData);
+          });
+        } else {
+          enviarDados(textosFormData, imgsFormData, bgsFormData);
+        }
       });
     }
   }
