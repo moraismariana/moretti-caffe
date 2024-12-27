@@ -1,3 +1,4 @@
+import createFittedImage from "./fitted-image.js";
 import refreshToken from "./refresh-token.js";
 
 export default function initCreateObjectsAPI() {
@@ -67,10 +68,11 @@ export default function initCreateObjectsAPI() {
   }
 
   if (pratoFormulario) {
-    pratoFormulario.addEventListener("submit", (event) => {
+    pratoFormulario.addEventListener("submit", async (event) => {
       event.preventDefault();
 
       const alert = document.querySelector("#create-prato .form-alert");
+      const token = localStorage.getItem("accessToken");
 
       const nome = document.getElementById("create-prato-nome").value;
       const preco = document.getElementById("create-prato-preco").value;
@@ -80,18 +82,23 @@ export default function initCreateObjectsAPI() {
       const params = new URLSearchParams(window.location.search);
       const categoria = +params.get("c");
 
+      const altura = 1200;
+      const largura = 1200;
+
       const formData = new FormData();
       formData.append("nome", nome);
       formData.append("preco", preco);
       formData.append("descricao", descricao);
-      formData.append(
-        "imagem",
-        imagem,
-        `${imageName}${imagem.name.substring(imagem.name.lastIndexOf("."))}`
-      );
       formData.append("categoria", categoria);
 
-      const token = localStorage.getItem("accessToken");
+      try {
+        const fittedImageURL = await createFittedImage(imagem, altura, largura);
+        const response = await fetch(fittedImageURL);
+        const fittedImageBlob = await response.blob();
+        formData.append("imagem", fittedImageBlob, `${imageName}.webp`);
+      } catch (error) {
+        console.error("Erro ao processar a imagem:", error.message);
+      }
 
       let options = {
         method: "POST",

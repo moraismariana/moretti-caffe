@@ -1,3 +1,4 @@
+import createFittedImage from "./fitted-image.js";
 import refreshToken from "./refresh-token.js";
 
 export default function initUpdateObjectsAPI() {
@@ -69,37 +70,41 @@ export default function initUpdateObjectsAPI() {
     }
 
     if (pratoFormulario) {
-      pratoFormulario.addEventListener("submit", (event) => {
+      pratoFormulario.addEventListener("submit", async (event) => {
         event.preventDefault();
 
         const alert = document.querySelector("#update-prato .form-alert");
+        const token = localStorage.getItem("accessToken");
 
         const novoNome = document.getElementById("update-prato-nome").value;
         const novoPreco = document.getElementById("update-prato-preco").value;
         const novaDescricao =
           document.getElementById("update-prato-desc").value;
-        const novaImagem = document.getElementById("update-prato-imagem")
-          .files[0];
+        const imagem = document.getElementById("update-prato-imagem").files[0];
 
-        console.log(novaImagem);
+        const altura = 1200;
+        const largura = 1200;
 
         const formData = new FormData();
         formData.append("nome", novoNome);
         formData.append("preco", novoPreco);
         formData.append("descricao", novaDescricao);
 
-        if (novaImagem) {
+        if (imagem) {
           const imageName = `${novoNome.toLowerCase().replace(/[ ]+/g, "-")}`;
-          formData.append(
-            "imagem",
-            novaImagem,
-            `${imageName}${novaImagem.name.substring(
-              novaImagem.name.lastIndexOf(".")
-            )}`
-          );
+          try {
+            const fittedImageURL = await createFittedImage(
+              imagem,
+              altura,
+              largura
+            );
+            const response = await fetch(fittedImageURL);
+            const fittedImageBlob = await response.blob();
+            formData.append("imagem", fittedImageBlob, `${imageName}.webp`);
+          } catch (error) {
+            console.error("Erro ao processar a imagem:", error.message);
+          }
         }
-
-        const token = localStorage.getItem("accessToken");
 
         const params = new URLSearchParams(window.location.search);
         const idPrato = params.get("id");
