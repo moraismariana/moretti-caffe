@@ -102,9 +102,10 @@
       }
       @include screen(mobile) {
         img {
-          width: 500px;
-          max-width: 100%;
-          height: 200px;
+          width: 100%;
+          height: 100%;
+          // height: 200px;
+          aspect-ratio: 4/4;
         }
         flex-direction: column;
         align-items: flex-start;
