@@ -27,6 +27,20 @@ export default function initModal() {
       nome.value = botao.dataset.pratoNome;
       preco.value = botao.dataset.pratoPreco;
       descricao.value = botao.dataset.pratoDesc;
+    } else if (document.body.id === "cms") {
+      const label = document.querySelector("#update-link label");
+      const input = document.getElementById("update-link-nome");
+
+      input.value = botao.dataset.linkValor;
+
+      if (botao.dataset.link === "whatsapp") {
+        label.innerText = "Whatsapp";
+        document.querySelector(".form-alert-2").innerHTML =
+          "Importante: siga o modelo de número <br> 55 31 988888888";
+      } else if (botao.dataset.link === "maps") {
+        label.innerText = "Link do Google Maps";
+        document.querySelector(".form-alert-2").innerHTML = "";
+      }
     }
   }
 
@@ -45,6 +59,8 @@ export default function initModal() {
         null,
         `?c=${botao.dataset.categoriaId}&id=${botao.dataset.pratoId}&t=${typeOfButton}`
       );
+    } else if (document.body.id === "cms") {
+      window.history.pushState(null, null, `?link=${botao.dataset.link}`);
     }
   }
 

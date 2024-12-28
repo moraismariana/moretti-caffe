@@ -40,6 +40,7 @@
     @include text-2;
   }
   label {
+    color: $c2;
     display: block;
     @include text-1;
     margin-left: $s4;

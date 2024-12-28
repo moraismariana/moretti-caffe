@@ -9,6 +9,7 @@ import initDeleteObjectsAPI from "./modules/delete-objects-api.js";
 import initHasFileInput from "./modules/has-file-input.js";
 import initGetEstatisticas from "./modules/get-estatisticas.js";
 import initPatchCms from "./modules/patch-cms.js";
+import initLinkExternoCMS from "./modules/link-externo-cms.js";
 
 initGetObjectsAPI();
 
@@ -22,3 +23,4 @@ initLogout();
 initHasFileInput();
 initGetEstatisticas();
 initPatchCms();
+initLinkExternoCMS();

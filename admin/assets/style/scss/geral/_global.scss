@@ -68,6 +68,13 @@ img {
   margin-top: $s4;
 }
 
+.form-alert-2 {
+  font-size: 1em;
+  color: $c3;
+  text-align: end;
+  margin-top: $s4;
+}
+
 .cardapio-aviso {
   @include text-2;
   @include align-div;
