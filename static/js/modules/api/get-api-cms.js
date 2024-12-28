@@ -2,6 +2,8 @@ export default function initGetApiCms() {
   const textosHtml = document.querySelectorAll('[data-cms="texto"]');
   const imgsHtml = document.querySelectorAll('[data-cms="img"]');
   const bgsHtml = document.querySelectorAll('[data-cms="bg"]');
+  const linksWhatsapp = document.querySelectorAll('[data-link="whatsapp"]');
+  const linksMaps = document.querySelectorAll('[data-link="maps"]');
 
   let promises = [];
 
@@ -15,6 +17,10 @@ export default function initGetApiCms() {
 
   if (imgsHtml[0] && window.Img_CMS_URL) {
     promises.push(fetch(window.Img_CMS_URL));
+  }
+
+  if (linksWhatsapp[0] || linksMaps[0]) {
+    promises.push(fetch("http://127.0.0.1:8000/linkexterno/1/"));
   }
 
   if (textosHtml[0] || bgsHtml[0] || imgsHtml[0]) {
@@ -58,6 +64,18 @@ export default function initGetApiCms() {
               for (let i = 0; i < imgsHtml.length; i++) {
                 imgsHtml[i].src = imgsApi[i];
                 imgsHtml[i].dataset.cmsAtributo = `${imgsApiAttr[i]}`;
+              }
+              break;
+            case "http://127.0.0.1:8000/linkexterno/1/":
+              if (linksWhatsapp[0] && dados.whatsapp) {
+                linksWhatsapp.forEach((link) => {
+                  link.href = `https://wa.me/${dados.whatsapp}`;
+                });
+              }
+              if (linksMaps[0] && dados.maps) {
+                linksMaps.forEach((link) => {
+                  link.href = dados.maps;
+                });
               }
               break;
           }

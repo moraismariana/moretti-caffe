@@ -46,7 +46,7 @@
                 </div>
                 <div>
                     <li><a href="../cardapio/">Cardápio</a></li>
-                    <li><a href="https://wa.me/5538999941166" target="_blank" data-link-externo="contato">Faça um pedido</a></li>
+                    <li><a data-modal="abrir" data-modal-type="update-link" data-link="whatsapp" href="https://wa.me/5538999941166" target="_blank" data-link-externo="contato">Faça um pedido</a></li>
                 </div>
                 <button type="button" data-menu-mobile-botao>
                     <div></div>
@@ -58,7 +58,7 @@
                 <li><a href="../">Início</a></li>
                 <li><a href="../sobre/">Sobre o Moretti</a></li>
                 <li><a href="../cardapio/">Cardápio</a></li>
-                <li><a href="https://wa.me/5538999941166" target="_blank" data-link-externo="contato">Faça um pedido</a></li>
+                <li><a data-modal="abrir" data-modal-type="update-link" data-link="whatsapp" href="https://wa.me/5538999941166" target="_blank" data-link-externo="contato">Faça um pedido</a></li>
             </ul>
         </div>
 
@@ -85,6 +85,22 @@
             <p>Desenvolvido por Mariana Morais © 2024.</p>
         </footer>
     </form>
+
+    <section class="api-modal-container" data-modal="container" data-modal-type="update-link">
+        <div class="api-modal">
+            <h2>Editar link externo</h2>
+            <form id="update-link" action="">
+                <label for="update-link-nome"></label>
+                <input type="text" for="update-link-nome" id="update-link-nome" name="update-link-nome" required>
+                <p class="form-alert-2"></p>
+                <p class="form-alert"></p>
+                <div class="api-buttons">
+                    <button data-modal="fechar" data-modal-type="update-link" class="cancel-button" type="button">Cancelar</button>
+                    <button class="send-button" type="submit">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </section>
 
     <script type="module" src="../../../static/js/script.js"></script>
     <script type="module" src="../../assets/js/script.js"></script>
