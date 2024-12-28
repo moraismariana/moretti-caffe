@@ -100,10 +100,8 @@ img {
 
 .js body {
   opacity: 0;
-  transition: 0.8s !important;
   &.visible {
-    animation: fade-in 0.5s forwards;
-    // opacity: 1 !important;
+    animation: fade-in 0.8s forwards;
   }
 }
 
