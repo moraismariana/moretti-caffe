@@ -116,7 +116,9 @@ export default function initPatchCms() {
                     imgsFormData.append(
                       imgsHtml[i].dataset.cmsAtributo,
                       blob,
-                      `${imgsHtml[i].dataset.cmsAtributo}.webp`
+                      `${
+                        imgsHtml[i].dataset.cmsAtributo
+                      }-${new Date().getTime()}.webp`
                     );
                   });
                 imgPromises.push(imgPromise);
@@ -134,7 +136,7 @@ export default function initPatchCms() {
               bgsFormData.append(
                 bgsHtml[i].dataset.cmsAtributo,
                 bg[0],
-                `${bgsHtml[i].dataset.cmsAtributo}.webp`
+                `${bgsHtml[i].dataset.cmsAtributo}-${new Date().getTime()}.webp`
               );
             }
           }
